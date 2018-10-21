@@ -1,0 +1,3 @@
+com\zhan\websys\web\mr\controller\HelloController.class
+com\zhan\websys\web\mr\common\GlobalCorsConfig.class
+com\zhan\websys\WebSysWebApplication.class

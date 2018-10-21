@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/websys.iml" filepath="$PROJECT_DIR$/websys.iml" />
+      <module fileurl="file://$PROJECT_DIR$/websyscommon/websyscommon.iml" filepath="$PROJECT_DIR$/websyscommon/websyscommon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/websysdao/websysdao.iml" filepath="$PROJECT_DIR$/websysdao/websysdao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/websysentity/websysentity.iml" filepath="$PROJECT_DIR$/websysentity/websysentity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/websysservice/websysservice.iml" filepath="$PROJECT_DIR$/websysservice/websysservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/websysweb/websysweb.iml" filepath="$PROJECT_DIR$/websysweb/websysweb.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="websysweb:war">
+    <output-path>$PROJECT_DIR$/websysweb/target</output-path>
+    <root id="archive" name="websysweb.war">
+      <element id="artifact" artifact-name="websysweb:war exploded" />
+    </root>
+  </artifact>
+</component>
