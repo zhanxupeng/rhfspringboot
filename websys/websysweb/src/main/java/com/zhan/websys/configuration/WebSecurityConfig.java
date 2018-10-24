@@ -1,5 +1,6 @@
-package com.zhan.websys.configure;
+package com.zhan.websys.configuration;
 
+import com.zhan.websys.interceptor.AuthorizationCheckInterceptor;
 import com.zhan.websys.interceptor.UserContextInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +18,16 @@ public class WebSecurityConfig implements WebMvcConfigurer {
         return new UserContextInterceptor();
     }
 
+    @Bean
+    AuthorizationCheckInterceptor getAuthorizationCheckInterceptor() {
+        return new AuthorizationCheckInterceptor();
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(getUserContextInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/customer/getDropDown.do", "/customer/login.do");
+                .excludePathPatterns("/customer/getDropDown.pub", "/customer/login.pub");
+
+        registry.addInterceptor(getAuthorizationCheckInterceptor()).addPathPatterns("/**/*.do");
     }
 }

@@ -1,4 +1,4 @@
-package com.zhan.websys.configure;
+package com.zhan.websys.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
