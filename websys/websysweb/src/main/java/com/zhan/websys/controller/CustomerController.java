@@ -2,6 +2,7 @@ package com.zhan.websys.controller;
 
 import cn.hutool.core.util.StrUtil;
 import com.zhan.websys.common.bean.ResultContext;
+import com.zhan.websys.common.loginuser.UserInfo;
 import com.zhan.websys.entity.customer.Customer;
 import com.zhan.websys.service.customer.CustomerService;
 import com.zhan.websys.service.enumpath.EnumPathService;
@@ -38,10 +39,10 @@ public class CustomerController {
         if (StrUtil.hasBlank(loginDTO.getUserName(), loginDTO.getPassword())) {
             throw new RuntimeException("账号密码不能为空");
         }
-        Map<String, String> map = new HashMap<>(3);
-        map.put("userName", loginDTO.getUserName());
-        map.put("password", loginDTO.getPassword());
-        request.getSession().setAttribute("user", map);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setLoginId(loginDTO.getUserName());
+        userInfo.setUserName(loginDTO.getUserName());
+        request.getSession().setAttribute("user", userInfo);
         return ResultContext.success();
     }
 

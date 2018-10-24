@@ -3,6 +3,8 @@ package com.zhan.websys.interceptor;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import com.zhan.websys.common.bean.ResultContext;
+import com.zhan.websys.common.loginuser.UserContext;
+import com.zhan.websys.common.loginuser.UserInfo;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +18,7 @@ public class UserContextInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object user = request.getSession().getAttribute("user");
+        UserInfo user = (UserInfo) request.getSession().getAttribute("user");
         if (ObjectUtil.isNull(user)) {
             ResultContext resultContext = ResultContext.systemException("请求失败");
             response.setContentType("application/json");
@@ -24,6 +26,7 @@ public class UserContextInterceptor extends HandlerInterceptorAdapter {
             response.getWriter().write(JSONUtil.toJsonStr(resultContext));
             return false;
         }
+        UserContext.setUserInfo(user);
         return true;
     }
 }
