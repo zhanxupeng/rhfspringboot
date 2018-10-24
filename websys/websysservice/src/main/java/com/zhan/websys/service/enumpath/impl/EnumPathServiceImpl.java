@@ -1,5 +1,6 @@
 package com.zhan.websys.service.enumpath.impl;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
 import com.zhan.websys.dao.dropdown.DropDown;
 import com.zhan.websys.dao.enumpath.EnumPathMapper;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +28,10 @@ public class EnumPathServiceImpl implements EnumPathService {
     @Override
     public List<DropDown> getDropDown(String code) {
         EnumPath enumPath = enumPathMapper.getByCode(code);
+        if (ObjectUtil.isNull(enumPath)) {
+            return new LinkedList<>();
+        }
+
         Class<?> clazz = getClass(enumPath.getPath());
 
         return Arrays.stream(clazz.getEnumConstants()).map(x -> {

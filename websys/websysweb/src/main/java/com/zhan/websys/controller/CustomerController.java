@@ -3,6 +3,7 @@ package com.zhan.websys.controller;
 import cn.hutool.core.util.StrUtil;
 import com.zhan.websys.common.bean.ResultContext;
 import com.zhan.websys.common.loginuser.UserInfo;
+import com.zhan.websys.configuration.DataSourceContextHolder;
 import com.zhan.websys.entity.customer.Customer;
 import com.zhan.websys.service.customer.CustomerService;
 import com.zhan.websys.service.enumpath.EnumPathService;
@@ -34,7 +35,7 @@ public class CustomerController {
         return customerService.getById(urid);
     }
 
-    @PostMapping("/login.do")
+    @PostMapping("/login.pub")
     public ResultContext login(LoginDTO loginDTO, HttpServletRequest request) {
         if (StrUtil.hasBlank(loginDTO.getUserName(), loginDTO.getPassword())) {
             throw new RuntimeException("账号密码不能为空");
@@ -52,8 +53,9 @@ public class CustomerController {
         return ResultContext.success(object);
     }
 
-    @GetMapping("/getDropDown.do")
+    @GetMapping("/getDropDown.pub")
     public ResultContext getDropDown(String code) {
+        DataSourceContextHolder.setSourceKey("sourceTwo");
         return ResultContext.success(enumPathService.getDropDown(code));
     }
 }
