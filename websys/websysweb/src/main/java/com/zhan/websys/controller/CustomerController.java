@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.zhan.websys.common.bean.ResultContext;
 import com.zhan.websys.entity.customer.Customer;
 import com.zhan.websys.service.customer.CustomerService;
+import com.zhan.websys.service.enumpath.EnumPathService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,8 @@ import java.util.Map;
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private EnumPathService enumPathService;
 
     @GetMapping("/getById.do")
     public Customer getById(String urid) {
@@ -46,5 +49,10 @@ public class CustomerController {
     public ResultContext getInfo(HttpServletRequest request) {
         Object object = request.getSession().getAttribute("user");
         return ResultContext.success(object);
+    }
+
+    @GetMapping("/getDropDown.do")
+    public ResultContext getDropDown(String code) {
+        return ResultContext.success(enumPathService.getDropDown(code));
     }
 }
