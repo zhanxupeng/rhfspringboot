@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhan.websys.dao.dbdatasource.DbDatasourceMapper">
+    <resultMap id="BaseResultMap" type="com.zhan.websys.entity.dbdatasource.DbDatasource">
+        <id column="DATABASE_KEY" jdbcType="VARCHAR" property="databaseKey"/>
+        <result column="JDBC_URL" jdbcType="VARCHAR" property="jdbcUrl"/>
+        <result column="JDBC_USERNAME" jdbcType="VARCHAR" property="jdbcUsername"/>
+        <result column="JDBC_PASSWORD" jdbcType="VARCHAR" property="jdbcPassword"/>
+        <result column="DATABASE_NAME" jdbcType="VARCHAR" property="databaseName"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        DATABASE_KEY,
+        JDBC_URL,
+        JDBC_USERNAME,
+        JDBC_PASSWORD,
+        DATABASE_NAME
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from DB_DATASOURCE
+        where DATABASE_KEY = #{databaseKey,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.zhan.websys.entity.dbdatasource.DbDatasource">
+        insert into DB_DATASOURCE
+        (DATABASE_KEY,
+        JDBC_URL,
+        JDBC_USERNAME,
+        JDBC_PASSWORD,
+        DATABASE_NAME
+        )values (
+        #{databaseKey,jdbcType=VARCHAR},
+        #{jdbcUrl,jdbcType=VARCHAR},
+        #{jdbcUsername,jdbcType=VARCHAR},
+        #{jdbcPassword,jdbcType=VARCHAR},
+        #{databaseName,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhan.websys.entity.dbdatasource.DbDatasource">
+        update DB_DATASOURCE
+        <set>
+            <if test="jdbcUrl != null">
+                JDBC_URL = #{jdbcUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="jdbcUsername != null">
+                JDBC_USERNAME = #{jdbcUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="jdbcPassword != null">
+                JDBC_PASSWORD = #{jdbcPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="databaseName != null">
+                DATABASE_NAME = #{databaseName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where DATABASE_KEY = #{databaseKey,jdbcType=VARCHAR}
+    </update>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM DB_DATASOURCE
+    </select>
+</mapper>

@@ -1,4 +1,4 @@
-package com.zhan.websys.configuration;
+package com.zhan.websys.dao.configuration;
 
 /**
  * @author zhanxp

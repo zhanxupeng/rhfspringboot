@@ -3,7 +3,7 @@ package com.zhan.websys.controller;
 import cn.hutool.core.util.StrUtil;
 import com.zhan.websys.common.bean.ResultContext;
 import com.zhan.websys.common.loginuser.UserInfo;
-import com.zhan.websys.configuration.DataSourceContextHolder;
+import com.zhan.websys.dao.configuration.DataSourceContextHolder;
 import com.zhan.websys.entity.customer.Customer;
 import com.zhan.websys.service.customer.CustomerService;
 import com.zhan.websys.service.enumpath.EnumPathService;
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author zhanxp

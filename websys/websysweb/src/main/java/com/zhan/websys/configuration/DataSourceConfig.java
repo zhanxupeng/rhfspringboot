@@ -1,9 +1,11 @@
 package com.zhan.websys.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.zhan.websys.dao.configuration.DynamicDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -22,7 +24,13 @@ public class DataSourceConfig {
         return new DruidDataSource();
     }
 
-    @Bean(name = "sourceOwo")
+    /**
+     * 这个是模板
+     *
+     * @return
+     */
+    @Bean(name = "sourceTwo")
+    @Scope("prototype")
     @ConfigurationProperties(prefix = "spring.datasource.source-two")
     public DruidDataSource getSourceTwo() {
         return new DruidDataSource();
@@ -37,7 +45,6 @@ public class DataSourceConfig {
         // 配置多数据源
         Map<Object, Object> dsMap = new HashMap<>(5);
         dsMap.put("sourceOne", getSourceOne());
-        dsMap.put("sourceTwo", getSourceTwo());
 
         dynamicDataSource.setTargetDataSources(dsMap);
 
