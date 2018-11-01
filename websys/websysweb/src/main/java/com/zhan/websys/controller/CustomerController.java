@@ -1,6 +1,8 @@
 package com.zhan.websys.controller;
 
 import cn.hutool.core.util.StrUtil;
+import com.google.code.kaptcha.Constants;
+import com.google.code.kaptcha.Producer;
 import com.zhan.websys.common.bean.ResultContext;
 import com.zhan.websys.common.loginuser.UserInfo;
 import com.zhan.websys.dao.configuration.DataSourceContextHolder;
@@ -13,7 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Date;
 
 /**
  * @author zhanxp
@@ -27,6 +35,8 @@ public class CustomerController {
     private CustomerService customerService;
     @Autowired
     private EnumPathService enumPathService;
+    @Autowired
+    private Producer captchaProducer;
 
     @GetMapping("/getById.do")
     public Customer getById(String urid) {
@@ -55,5 +65,26 @@ public class CustomerController {
     public ResultContext getDropDown(String code) {
         DataSourceContextHolder.setSourceKey("sourceTwo");
         return ResultContext.success(enumPathService.getDropDown(code));
+    }
+
+    /**
+     * 生成带验证码的图片
+     */
+    @GetMapping(value = "/getCaptchaImage.pub")
+    public void getCaptchaImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setDateHeader("Expires", 0);
+        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+        response.setHeader("Pragma", "no-cache");
+        response.setContentType("image/jpeg");
+        String capText = captchaProducer.createText();
+
+        request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+        request.getSession().setAttribute(Constants.KAPTCHA_SESSION_DATE, new Date());
+        BufferedImage bi = captchaProducer.createImage(capText);
+        try (ServletOutputStream out = response.getOutputStream()) {
+            ImageIO.write(bi, "jpeg", out);
+            out.flush();
+        }
     }
 }

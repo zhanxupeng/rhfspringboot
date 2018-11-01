@@ -14,6 +14,9 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>websysweb</name>
+    <properties>
+        <kaptcha.version>2.3.2</kaptcha.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.zhan</groupId>
@@ -22,6 +25,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptcha.version}</version>
         </dependency>
 
         <dependency>

@@ -19,6 +19,8 @@
         <lombok.version>1.16.22</lombok.version>
         <hutool.version>4.1.14</hutool.version>
         <guava.version>20.0</guava.version>
+        <quartz.version>2.3.0</quartz.version>
+        <dangdang.version>2.1.5</dangdang.version>
     </properties>
 
     <dependencies>
@@ -39,5 +41,25 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
+
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.quartz-scheduler/quartz &ndash;&gt;-->
+        <!--<dependency>-->
+        <!--<groupId>org.quartz-scheduler</groupId>-->
+        <!--<artifactId>quartz</artifactId>-->
+        <!--<version>${quartz.version}</version>-->
+        <!--</dependency>-->
+
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.quartz-scheduler/quartz-jobs &ndash;&gt;-->
+        <!--<dependency>-->
+        <!--<groupId>org.quartz-scheduler</groupId>-->
+        <!--<artifactId>quartz-jobs</artifactId>-->
+        <!--<version>2.3.0</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-lite-core</artifactId>
+            <version>${dangdang.version}</version>
+        </dependency>
+
     </dependencies>
 </project>

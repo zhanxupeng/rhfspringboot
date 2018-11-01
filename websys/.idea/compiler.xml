@@ -14,7 +14,7 @@
         <module name="websysweb" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="websys" target="1.8" />
       <module name="websyscommon" target="1.8" />
       <module name="websysdao" target="1.8" />

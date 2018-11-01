@@ -25,9 +25,9 @@ public class WebSecurityConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(getUserContextInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/customer/getDropDown.pub", "/customer/login.pub");
-
-        registry.addInterceptor(getAuthorizationCheckInterceptor()).addPathPatterns("/**/*.do");
+//        registry.addInterceptor(getUserContextInterceptor()).addPathPatterns("/**")
+//                .excludePathPatterns("/customer/getDropDown.pub", "/customer/login.pub");
+//
+//        registry.addInterceptor(getAuthorizationCheckInterceptor()).addPathPatterns("/**/*.do");
     }
 }
