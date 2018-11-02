@@ -45,14 +45,15 @@ public class CustomerController {
 
     @PostMapping("/login.pub")
     public ResultContext login(LoginDTO loginDTO, HttpServletRequest request) {
-        if (StrUtil.hasBlank(loginDTO.getUserName(), loginDTO.getPassword())) {
+        if (StrUtil.hasBlank(loginDTO.getLoginId(), loginDTO.getPassword())) {
             throw new RuntimeException("账号密码不能为空");
         }
         UserInfo userInfo = new UserInfo();
-        userInfo.setLoginId(loginDTO.getUserName());
-        userInfo.setUserName(loginDTO.getUserName());
+        userInfo.setLoginId(loginDTO.getLoginId());
+        userInfo.setUserName("admin");
+        userInfo.setNeedChangPassWord(Boolean.FALSE);
         request.getSession().setAttribute("user", userInfo);
-        return ResultContext.success();
+        return ResultContext.success(userInfo);
     }
 
     @GetMapping("/getInfo.do")
@@ -65,6 +66,11 @@ public class CustomerController {
     public ResultContext getDropDown(String code) {
         DataSourceContextHolder.setSourceKey("sourceTwo");
         return ResultContext.success(enumPathService.getDropDown(code));
+    }
+
+    @PostMapping("ifNeetCaptcha.pub")
+    public ResultContext ifNeetCaptcha(String loginId){
+        return ResultContext.success(Boolean.TRUE);
     }
 
     /**

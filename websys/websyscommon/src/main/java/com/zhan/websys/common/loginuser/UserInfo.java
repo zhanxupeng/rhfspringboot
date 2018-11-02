@@ -17,6 +17,7 @@ public class UserInfo implements Serializable {
     private String loginId;
     private String userName;
     private String tenantIds;
+    private Boolean needChangPassWord;
 
     public List<String> getTenantIdList() {
         return StrUtil.isBlank(tenantIds) ? new LinkedList<>()
