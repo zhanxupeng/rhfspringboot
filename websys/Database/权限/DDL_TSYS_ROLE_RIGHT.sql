@@ -11,6 +11,7 @@ create table TSYS_ROLE_RIGHT
   remark       VARCHAR2(256)
 )
 ;
+COMMIT ;
 comment on table TSYS_ROLE_RIGHT
   is '角色权限表';
 comment on column TSYS_ROLE_RIGHT.urid
@@ -33,3 +34,4 @@ comment on column TSYS_ROLE_RIGHT.remark
   is '备注';
 alter table TSYS_ROLE_RIGHT
   add primary key (URID);
+COMMIT ;

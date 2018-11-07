@@ -19,6 +19,7 @@ create table TSYS_USER
   lock_status     CHAR(1) default '0' not null
 )
 ;
+COMMIT ;
 comment on table TSYS_USER
   is '用户表';
 comment on column TSYS_USER.urid
@@ -55,3 +56,4 @@ comment on column TSYS_USER.remark
   is '备注';
 alter table TSYS_USER
   add primary key (URID);
+COMMIT ;

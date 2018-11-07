@@ -14,6 +14,7 @@ create table TSYS_MENU_OPERATION
   active_flag CHAR(1) not null
 )
 ;
+COMMIT ;
 comment on table TSYS_MENU_OPERATION
   is '菜单操作表';
 comment on column TSYS_MENU_OPERATION.urid
@@ -44,3 +45,4 @@ alter table TSYS_MENU_OPERATION
   add primary key (URID);
 alter table TSYS_MENU_OPERATION
   add unique (MENU_ID, CODE);
+COMMIT ;

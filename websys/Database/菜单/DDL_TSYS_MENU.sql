@@ -18,6 +18,7 @@ create table TSYS_MENU
   show_flag   CHAR(1) default 1 not null
 )
 ;
+COMMIT ;
 comment on table TSYS_MENU
   is '系统菜单表';
 comment on column TSYS_MENU.urid
@@ -56,3 +57,4 @@ alter table TSYS_MENU
   add primary key (URID);
 alter table TSYS_MENU
   add unique (CODE);
+COMMIT ;

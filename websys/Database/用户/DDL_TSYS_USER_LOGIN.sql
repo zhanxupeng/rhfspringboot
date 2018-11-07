@@ -8,6 +8,7 @@ create table TSYS_USER_LOGIN
   last_fail_date   TIMESTAMP(6)
 )
 ;
+COMMIT ;
 comment on table TSYS_USER_LOGIN
   is '用户登录表';
 comment on column TSYS_USER_LOGIN.urid
@@ -26,3 +27,4 @@ alter table TSYS_USER_LOGIN
   add constraint PK_USER_LOGIN_URID primary key (URID);
 alter table TSYS_USER_LOGIN
   add constraint UK_USER_LOGIN_USERID unique (USER_ID);
+COMMIT ;
