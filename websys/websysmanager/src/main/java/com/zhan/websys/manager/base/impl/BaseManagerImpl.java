@@ -1,9 +1,11 @@
 package com.zhan.websys.manager.base.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.zhan.websys.common.exception.BusinessException;
 import com.zhan.websys.common.exception.SystemException;
 import com.zhan.websys.dao.base.BaseMapper;
 import com.zhan.websys.entity.base.BaseEntity;
+import com.zhan.websys.entity.base.PageQuery;
 import com.zhan.websys.manager.base.BaseManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,8 +57,9 @@ public class BaseManagerImpl<T extends BaseMapper<M>, M extends BaseEntity> impl
     }
 
     @Override
-    public List<M> find(M entity) {
-        //分页
-        return mapper.find(entity);
+    public List<M> find(PageQuery<M> pageQuery) {
+        //todo 分页拦截器暂时没法用
+        PageHelper.startPage(pageQuery.getPageNum(), pageQuery.getPageSize(), pageQuery.getOrderBy());
+        return mapper.find(pageQuery.getEntity());
     }
 }

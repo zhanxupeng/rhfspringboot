@@ -1,6 +1,7 @@
 package com.zhan.websys.manager.base;
 
 import com.zhan.websys.entity.base.BaseEntity;
+import com.zhan.websys.entity.base.PageQuery;
 
 import java.util.List;
 
@@ -41,8 +42,8 @@ public interface BaseManager<M extends BaseEntity> {
     /**
      * 查询
      *
-     * @param entity
+     * @param pageQuery
      * @return
      */
-    List<M> find(M entity);
+    List<M> find(PageQuery<M> pageQuery);
 }
