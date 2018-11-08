@@ -1,5 +1,6 @@
 package com.zhan.websys.entity.menu;
 
+import com.zhan.websys.entity.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,12 +12,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
-public class Menu {
-    /**
-     * 菜单ID
-     * URID
-     */
-    private String urid;
+public class Menu extends BaseEntity {
 
     /**
      * 菜单编码
@@ -65,42 +61,6 @@ public class Menu {
      * ORDER_NO
      */
     private Integer orderNo;
-
-    /**
-     * 创建人
-     * CREATOR
-     */
-    private String creator;
-
-    /**
-     * 创建时间
-     * CREATE_DATE
-     */
-    private Date createDate;
-
-    /**
-     * 更新人
-     * UPDATOR
-     */
-    private String updator;
-
-    /**
-     * 更新时间
-     * UPDATE_DATE
-     */
-    private Date updateDate;
-
-    /**
-     * 版本号
-     * VERSION
-     */
-    private Long version;
-
-    /**
-     * 备注
-     * REMARK
-     */
-    private String remark;
 
     /**
      * 是否在菜单树展示：0-否，1-是

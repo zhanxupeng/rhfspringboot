@@ -1,11 +1,7 @@
 package com.zhan.websys.dao.role;
 
+import com.zhan.websys.dao.base.BaseMapper;
 import com.zhan.websys.entity.role.Role;
 
-public interface RoleMapper {
-    int insert(Role record);
-
-    Role selectByPrimaryKey(String urid);
-
-    int updateByPrimaryKeySelective(Role record);
+public interface RoleMapper extends BaseMapper<Role> {
 }
