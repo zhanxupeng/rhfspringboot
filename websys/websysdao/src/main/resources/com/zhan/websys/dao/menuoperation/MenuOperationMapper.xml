@@ -127,11 +127,17 @@
         </set>
         where URID = #{urid,jdbcType=VARCHAR}
     </update>
-    
+
     <delete id="delete">
         DELETE
         FROM TSYS_MENU_OPERATION
         WHERE URID = #{urid}
         AND VERSION = #{version}
     </delete>
+
+    <select id="find">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM TSYS_MENU_OPERATION
+    </select>
 </mapper>

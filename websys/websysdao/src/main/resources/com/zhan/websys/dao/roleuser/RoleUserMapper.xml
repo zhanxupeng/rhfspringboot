@@ -112,4 +112,10 @@
         WHERE URID = #{urid}
         AND VERSION = #{version}
     </delete>
+    
+    <select id="find">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM TSYS_ROLE_USER
+    </select>
 </mapper>
