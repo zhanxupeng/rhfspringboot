@@ -1,7 +1,7 @@
-package com.zhan.websys.configuration;
+package com.zhan.websys.controller.configuration;
 
-import com.zhan.websys.interceptor.AuthorizationCheckInterceptor;
-import com.zhan.websys.interceptor.UserContextInterceptor;
+import com.zhan.websys.controller.interceptor.AuthorizationCheckInterceptor;
+import com.zhan.websys.controller.interceptor.UserContextInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

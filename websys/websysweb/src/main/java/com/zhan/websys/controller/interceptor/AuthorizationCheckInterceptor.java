@@ -1,4 +1,4 @@
-package com.zhan.websys.interceptor;
+package com.zhan.websys.controller.interceptor;
 
 import cn.hutool.json.JSONUtil;
 import com.zhan.websys.common.bean.ResultContext;

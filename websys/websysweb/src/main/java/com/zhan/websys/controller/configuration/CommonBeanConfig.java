@@ -1,4 +1,4 @@
-package com.zhan.websys.configuration;
+package com.zhan.websys.controller.configuration;
 
 import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;

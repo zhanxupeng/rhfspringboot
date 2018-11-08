@@ -24,6 +24,7 @@
         <module>websysmanager</module>
         <module>websysapi</module>
         <module>websysprovider</module>
+        <module>websysbo</module>
     </modules>
     <!-- 版本说明：这里统一管理依赖的版本号 -->
     <dependencyManagement>

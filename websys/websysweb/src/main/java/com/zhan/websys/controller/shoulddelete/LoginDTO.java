@@ -1,4 +1,4 @@
-package com.zhan.websys.controller;
+package com.zhan.websys.controller.shoulddelete;
 
 import lombok.Getter;
 import lombok.Setter;

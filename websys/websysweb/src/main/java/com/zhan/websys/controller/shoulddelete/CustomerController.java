@@ -1,4 +1,4 @@
-package com.zhan.websys.controller;
+package com.zhan.websys.controller.shoulddelete;
 
 import cn.hutool.core.util.StrUtil;
 import com.google.code.kaptcha.Constants;
