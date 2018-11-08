@@ -3,43 +3,36 @@ package com.zhan.websys.common.enums;
 /**
  * 消息代码
  */
-public enum ENMsgCode {
+public enum ENMsgCode implements LabelAndValue<String> {
     /**
      * 请求操作成功【0】
      */
-    SUCCESS("0"),
+    SUCCESS("0", "成功"),
     /**
      * 业务错误【1】
      */
-    BUSINESS_ERROR("1"),
+    BUSINESS_ERROR("1", "业务异常"),
     /**
      * 系统异常【2】
      */
-    SYSTEM_EXCEPTION("2"),
-    /**
-     * 未登录【3】
-     */
-    NOT_LOG_IN("3"),
-    /**
-     * session超时【4】
-     */
-    SESSION_TIMEOUT("4"),
-    /**
-     * 没有权限【5】
-     */
-    WITHOUT_RIGHT("5"),
-    /**
-     * 配置异常【6】
-     */
-    CONFIG_ERROR("6");
+    SYSTEM_EXCEPTION("2", "系统异常");
 
     private String value;
+    private String label;
 
-    ENMsgCode(String value) {
+    ENMsgCode(String value, String label) {
         this.value = value;
+        this.label = label;
     }
 
+
+    @Override
     public String getValue() {
-        return this.value;
+        return value;
+    }
+
+    @Override
+    public String getLabel() {
+        return label;
     }
 }
