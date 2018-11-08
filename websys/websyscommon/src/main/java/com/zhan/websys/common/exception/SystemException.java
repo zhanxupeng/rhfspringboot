@@ -7,15 +7,15 @@ import com.zhan.websys.common.enums.ENMsgCode;
  * @version 1.0 2018/11/8
  */
 public class SystemException extends BaseRuntimeException {
-    SystemException(String message) {
+    public SystemException(String message) {
         super(ENMsgCode.SYSTEM_EXCEPTION.getValue(), message);
     }
 
-    SystemException(Throwable throwable) {
+    public SystemException(Throwable throwable) {
         super(ENMsgCode.SYSTEM_EXCEPTION.getValue(), throwable);
     }
 
-    SystemException(String message, Throwable throwable) {
+    public SystemException(String message, Throwable throwable) {
         super(ENMsgCode.SYSTEM_EXCEPTION.getValue(), message, throwable);
     }
 }

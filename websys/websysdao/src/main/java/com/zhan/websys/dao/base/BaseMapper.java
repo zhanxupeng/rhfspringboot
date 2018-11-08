@@ -28,7 +28,7 @@ public interface BaseMapper<T> {
     /**
      * 删除
      */
-    int delete(@Param("urid") String urid, @Param("version") Integer version);
+    int delete(@Param("urid") String urid, @Param("version") Long version);
 
     /**
      * 查询

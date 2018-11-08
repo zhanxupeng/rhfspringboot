@@ -7,15 +7,15 @@ import com.zhan.websys.common.enums.ENMsgCode;
  * @version 1.0 2018/11/8
  */
 public class BusinessException extends BaseRuntimeException {
-    BusinessException(String message) {
+    public BusinessException(String message) {
         super(ENMsgCode.BUSINESS_ERROR.getValue(), message);
     }
 
-    BusinessException(Throwable throwable) {
+    public BusinessException(Throwable throwable) {
         super(ENMsgCode.BUSINESS_ERROR.getValue(), throwable);
     }
 
-    BusinessException(String message, Throwable throwable) {
+    public BusinessException(String message, Throwable throwable) {
         super(ENMsgCode.BUSINESS_ERROR.getValue(), message, throwable);
     }
 }

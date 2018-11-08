@@ -56,7 +56,7 @@ public class BaseEntity {
      */
     private String remark;
 
-    private void init() {
+    public void init() {
         this.urid = IdUtil.simpleUUID();
         this.creator = UserContext.getUserId();
         this.createDate = new Date();
@@ -65,7 +65,7 @@ public class BaseEntity {
         this.version = 1L;
     }
 
-    private void edit() {
+    public void edit() {
         this.updator = UserContext.getUserId();
         this.updateDate = new Date();
         if (ObjectUtil.isNull(version)) {
