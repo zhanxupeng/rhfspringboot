@@ -9,9 +9,9 @@ import java.util.List;
 public interface DbDatasourceMapper {
     int insert(DbDatasource record);
 
-    DbDatasource selectByPrimaryKey(String databaseKey);
+    DbDatasource getById(String databaseKey);
 
-    int updateByPrimaryKeySelective(DbDatasource record);
+    int update(DbDatasource record);
 
     List<DbDatasource> findAll();
 }
