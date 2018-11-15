@@ -1,4 +1,4 @@
-package com.zhan.websys.controller.configuration;
+package com.zhan.websys.provider.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.zhan.websys.dao.configuration.DynamicDataSource;

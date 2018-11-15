@@ -57,7 +57,12 @@ public class BaseManagerImpl<T extends BaseMapper<M>, M extends BaseEntity> impl
     }
 
     @Override
-    public List<M> find(PageQuery<M> pageQuery) {
+    public List<M> find(M entity) {
+        return mapper.find(entity);
+    }
+
+    @Override
+    public List<M> pageQuery(PageQuery<M> pageQuery) {
         //todo 分页拦截器暂时没法用
         PageHelper.startPage(pageQuery.getPageNum(), pageQuery.getPageSize(), pageQuery.getOrderBy());
         return mapper.find(pageQuery.getEntity());

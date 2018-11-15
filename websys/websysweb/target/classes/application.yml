@@ -1,3 +1,14 @@
 spring:
   profiles:
     active: dev
+  dubbo:
+    application:
+      name: live-dubbo-consumer
+      id: live-dubbo-consumer
+    protocol:
+      port: 20800
+      name: dubbo
+    registry:
+      address: zookeeper://127.0.0.1:2181
+server:
+  port: 8088

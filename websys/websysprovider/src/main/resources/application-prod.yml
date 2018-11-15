@@ -65,8 +65,5 @@ pagehelper:
     params: count=countSql
     returnPageInfo: check
 
-swagger:
-  show: false
-
 
 

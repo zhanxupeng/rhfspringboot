@@ -3,6 +3,16 @@ server:
 
 
 spring:
+    dubbo:
+        application:
+            id: live-dubbo-provider
+            name: live-dubbo-provider
+        registry:
+            address: zookeeper://127.0.0.1:2181
+        server: true
+        protocal:
+            name: dubbo
+            port: 20880
     datasource:
         #druid相关配置
         source-one:

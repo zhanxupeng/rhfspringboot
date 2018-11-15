@@ -42,8 +42,16 @@ public interface BaseManager<M extends BaseEntity> {
     /**
      * 查询
      *
+     * @param entity
+     * @return
+     */
+    List<M> find(M entity);
+
+    /**
+     * 分页查询
+     *
      * @param pageQuery
      * @return
      */
-    List<M> find(PageQuery<M> pageQuery);
+    List<M> pageQuery(PageQuery<M> pageQuery);
 }

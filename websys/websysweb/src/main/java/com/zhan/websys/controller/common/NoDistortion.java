@@ -1,4 +1,4 @@
-package com.zhan.websys.controller.shoulddelete;
+package com.zhan.websys.controller.common;
 
 /**
  * @author zhanxp
