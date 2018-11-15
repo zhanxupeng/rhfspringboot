@@ -2,6 +2,7 @@ package com.zhan.websys.service.enumpath.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
+import com.zhan.websys.common.exception.BusinessException;
 import com.zhan.websys.dao.dropdown.DropDown;
 import com.zhan.websys.dao.enumpath.EnumPathMapper;
 import com.zhan.websys.entity.enumpath.EnumPath;
@@ -46,7 +47,7 @@ public class EnumPathServiceImpl implements EnumPathService {
         try {
             return Class.forName(classPath);
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("枚举不存在");
+            throw new BusinessException("枚举不存在");
         }
     }
 }

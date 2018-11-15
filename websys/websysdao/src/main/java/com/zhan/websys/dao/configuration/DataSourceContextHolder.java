@@ -5,8 +5,8 @@ package com.zhan.websys.dao.configuration;
  * @version 1.0 2018/10/24
  */
 public class DataSourceContextHolder {
-
-    private static final ThreadLocal<String> CONTEXT_HOLDER = new ThreadLocal<>();
+    private static final String DEFAULT = "sourceOne";
+    private static final ThreadLocal<String> CONTEXT_HOLDER = ThreadLocal.withInitial(() -> DEFAULT);
 
 
     public static void setSourceKey(String dbType) {
