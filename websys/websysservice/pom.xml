@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>com.zhan</groupId>
-            <artifactId>websysdao</artifactId>
+            <artifactId>websysmanager</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -3,7 +3,7 @@ package com.zhan.websys.service.enumpath.impl;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
 import com.zhan.websys.common.exception.BusinessException;
-import com.zhan.websys.dao.dropdown.DropDown;
+import com.zhan.websys.bo.dropdown.DropDownBO;
 import com.zhan.websys.dao.enumpath.EnumPathMapper;
 import com.zhan.websys.entity.enumpath.EnumPath;
 import com.zhan.websys.service.enumpath.EnumPathService;
@@ -27,7 +27,7 @@ public class EnumPathServiceImpl implements EnumPathService {
     private EnumPathMapper enumPathMapper;
 
     @Override
-    public List<DropDown> getDropDown(String code) {
+    public List<DropDownBO> getDropDown(String code) {
         EnumPath enumPath = enumPathMapper.getByCode(code);
         if (ObjectUtil.isNull(enumPath)) {
             return new LinkedList<>();
@@ -36,10 +36,10 @@ public class EnumPathServiceImpl implements EnumPathService {
         Class<?> clazz = getClass(enumPath.getPath());
 
         return Arrays.stream(clazz.getEnumConstants()).map(x -> {
-            DropDown dropDown = new DropDown();
-            dropDown.setValue(ReflectUtil.getFieldValue(x, VALUE).toString());
-            dropDown.setLabel(ReflectUtil.getFieldValue(x, LABEL).toString());
-            return dropDown;
+            DropDownBO dropDownBO = new DropDownBO();
+            dropDownBO.setValue(ReflectUtil.getFieldValue(x, VALUE).toString());
+            dropDownBO.setLabel(ReflectUtil.getFieldValue(x, LABEL).toString());
+            return dropDownBO;
         }).collect(Collectors.toList());
     }
 

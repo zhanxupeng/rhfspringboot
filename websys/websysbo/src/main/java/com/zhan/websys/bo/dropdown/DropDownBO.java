@@ -1,4 +1,4 @@
-package com.zhan.websys.dao.dropdown;
+package com.zhan.websys.bo.dropdown;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class DropDown {
+public class DropDownBO {
     private String value;
     private String label;
 }

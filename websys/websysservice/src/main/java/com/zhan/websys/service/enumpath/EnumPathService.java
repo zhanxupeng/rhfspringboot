@@ -1,6 +1,6 @@
 package com.zhan.websys.service.enumpath;
 
-import com.zhan.websys.dao.dropdown.DropDown;
+import com.zhan.websys.bo.dropdown.DropDownBO;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  * @version 1.0 2018/10/24
  */
 public interface EnumPathService {
-    List<DropDown> getDropDown(String code);
+    List<DropDownBO> getDropDown(String code);
 }

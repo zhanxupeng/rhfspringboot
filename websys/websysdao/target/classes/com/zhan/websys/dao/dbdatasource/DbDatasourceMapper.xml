@@ -17,7 +17,7 @@
         DATABASE_NAME
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="getById" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from DB_DATASOURCE
@@ -39,7 +39,7 @@
         #{databaseName,jdbcType=VARCHAR})
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.zhan.websys.entity.dbdatasource.DbDatasource">
+    <update id="update" parameterType="com.zhan.websys.entity.dbdatasource.DbDatasource">
         update DB_DATASOURCE
         <set>
             <if test="jdbcUrl != null">

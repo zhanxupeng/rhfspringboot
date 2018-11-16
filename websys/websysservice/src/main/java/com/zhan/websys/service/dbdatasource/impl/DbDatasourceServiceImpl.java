@@ -8,6 +8,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
 public class DbDatasourceServiceImpl implements DbDatasourceService, InitializingBean {
     @Autowired
     private DbDatasourceMapper dbDatasourceMapper;
-    @Autowired
+    @Resource(name = "dataSource")
     private IDynamicDataSource dynamicDataSource;
 
     public List<DbDatasource> findAll() {
