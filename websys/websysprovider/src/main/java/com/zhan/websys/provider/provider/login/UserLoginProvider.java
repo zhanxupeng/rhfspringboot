@@ -5,6 +5,8 @@ import com.zhan.websys.api.login.UserLoginApi;
 import com.zhan.websys.api.login.vo.LoginVO;
 import com.zhan.websys.common.bean.ResultContext;
 import com.zhan.websys.provider.provider.BaseProvider;
+import com.zhan.websys.service.userlogin.UserLoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,9 +16,12 @@ import org.springframework.stereotype.Component;
 @Service(interfaceClass = UserLoginApi.class)
 @Component
 public class UserLoginProvider extends BaseProvider implements UserLoginApi {
+    @Autowired
+    private UserLoginService userLoginService;
+
     @Override
     public ResultContext<Boolean> ifNeetCaptcha(String loginId) {
-        return success(Boolean.TRUE);
+        return success(userLoginService.ifNeetCaptcha(loginId));
     }
 
     @Override
