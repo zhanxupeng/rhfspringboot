@@ -18,7 +18,7 @@ spring:
         source-one:
             #监控统计拦截的filters
             filters: stat
-            driver-class-name: oracle.jdbc.driver.OracleDriver
+            driver-class-name: oracle.jdbc.OracleDriver
             #基本属性
             url: jdbc:oracle:thin:@localhost:1521:ORCL
             username: system
@@ -44,7 +44,7 @@ spring:
         source-two:
             #监控统计拦截的filters
             filters: stat
-            driver-class-name: oracle.jdbc.driver.OracleDriver
+            driver-class-name: oracle.jdbc.OracleDriver
             #配置初始化大小/最小/最大
             initial-size: 1
             min-idle: 1
