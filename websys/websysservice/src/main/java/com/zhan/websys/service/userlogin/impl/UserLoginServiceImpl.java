@@ -35,6 +35,7 @@ public class UserLoginServiceImpl implements UserLoginService {
     public boolean ifNeetCaptcha(String loginId) {
         boolean needCaptcha = Boolean.TRUE;
         User user = userManager.getByLoginId(loginId);
+        
         if (ObjectUtil.isNotNull(user)) {
             UserLogin userLogin = userLoginManager.getByUserId(user.getUrid());
             //第一次登录或者上一次登录成功的不需要验证码
@@ -48,29 +49,59 @@ public class UserLoginServiceImpl implements UserLoginService {
     @Override
     public LoginBO login(String loginId, String password, String loginIp) {
         LoginBO loginBO = new LoginBO();
-
         User user = userManager.getByLoginId(loginId);
-        if (ObjectUtil.isNull(user)) {
+
+        //校验用户是否可以登录
+        checkUserCanLogin(user);
+
+        //用户过期校验
+        UserLogin userLogin = checkLoginMessage(loginIp, user);
+
+        String loginPassword = DigestUtil.sha256Hex(password + loginId).toUpperCase();
+
+        //校验面是否正确
+        checkPassword(user, userLogin, loginPassword);
+
+        //初始密码需要强制修改密码
+        if (loginPassword.equalsIgnoreCase(DigestUtil.sha256Hex(UserContext.DEFAULT_PWD + loginId))) {
+            loginBO.setNeedChangPassWord(true);
+        }
+
+        //登录成功
+        userLogin.setLoginFailTimes(0);
+        userLogin.setLastLoginDate(new Date());
+        userLoginManager.edit(userLogin);
+
+        loginBO.setUrid(user.getUrid());
+        loginBO.setLoginId(loginId);
+        loginBO.setName(user.getName());
+        return loginBO;
+    }
+
+    private void checkPassword(User user, UserLogin userLogin, String loginPassword) {
+        //密码错误
+        if (!user.getPassword().equalsIgnoreCase(loginPassword)) {
+            //更新登录失败信息
+            userLogin.setLoginFailTimes(userLogin.getLoginFailTimes() + 1);
+            userLogin.setLastFailDate(new Date());
+            userLoginManager.edit(userLogin);
+            //密码错误超过五次
+            if (userLogin.getLoginFailTimes() >= 5) {
+                userManager.lock(user.getUrid());
+                throw new BusinessException("密码错误次数过多，用户已被锁定！");
+            }
             throw new BusinessException("用户不存在或密码错误！");
         }
+    }
 
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUserId(user.getUrid());
-        UserContext.setUserInfo(userInfo);
-
-        switch (ENUserStatus.getByValue(user.getUserStatus())) {
-            case LOG_OFF:
-                throw new BusinessException("用户已被注销，无法登录！");
-            case DISABLE:
-                throw new BusinessException("用户已被冻结，请联系管理员激活！");
-            default:
-                break;
-        }
-
-        if (ENLockStatus.isLocked(user.getLockStatus())) {
-            throw new BusinessException("用户已被锁定，请联系管理员解锁！");
-        }
-
+    /**
+     * 用户登录记录的校验
+     *
+     * @param loginIp
+     * @param user
+     * @return
+     */
+    private UserLogin checkLoginMessage(String loginIp, User user) {
         UserLogin userLogin = userLoginManager.getByUserId(user.getUrid());
         if (ObjectUtil.isNull(userLogin)) {
             userLogin = new UserLogin();
@@ -94,41 +125,34 @@ public class UserLoginServiceImpl implements UserLoginService {
             }
 
         }
+        return userLogin;
+    }
 
-
-        //判断密码
-        String loginPassword = DigestUtil.sha256Hex(password + loginId).toUpperCase();
-        //密码错误
-        if (!user.getPassword().equalsIgnoreCase(loginPassword)) {
-            //更新登录失败信息
-            userLogin.setLoginFailTimes(userLogin.getLoginFailTimes() + 1);
-            userLogin.setLastFailDate(new Date());
-            userLoginManager.edit(userLogin);
-            //密码错误超过五次
-            if (userLogin.getLoginFailTimes() >= 5) {
-                userManager.lock(user.getUrid());
-                throw new BusinessException("密码错误次数过多，用户已被锁定！");
-            }
+    /**
+     * 校验用户是否可以登录
+     *
+     * @param user
+     */
+    private void checkUserCanLogin(User user) {
+        if (ObjectUtil.isNull(user)) {
             throw new BusinessException("用户不存在或密码错误！");
         }
 
-        //初始密码需要强制修改密码
-        if (loginPassword.equalsIgnoreCase(DigestUtil.sha256Hex(UserContext.DEFAULT_PWD + loginId))) {
-            loginBO.setNeedChangPassWord(true);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(user.getUrid());
+        UserContext.setUserInfo(userInfo);
+
+        switch (ENUserStatus.getByValue(user.getUserStatus())) {
+            case LOG_OFF:
+                throw new BusinessException("用户已被注销，无法登录！");
+            case DISABLE:
+                throw new BusinessException("用户已被冻结，请联系管理员激活！");
+            default:
+                break;
         }
 
-        //登录成功
-        userLogin.setLoginFailTimes(0);
-        userLogin.setLastLoginDate(new Date());
-        userLoginManager.edit(userLogin);
-
-        loginBO.setUrid(user.getUrid());
-        loginBO.setLoginId(loginId);
-        loginBO.setName(user.getName());
-        return loginBO;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(DigestUtil.sha256Hex(UserContext.DEFAULT_PWD + "admin"));
+        if (ENLockStatus.isLocked(user.getLockStatus())) {
+            throw new BusinessException("用户已被锁定，请联系管理员解锁！");
+        }
     }
 }
