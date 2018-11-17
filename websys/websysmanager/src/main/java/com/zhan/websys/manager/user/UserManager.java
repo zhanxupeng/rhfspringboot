@@ -8,5 +8,8 @@ import com.zhan.websys.manager.base.BaseManager;
  * @version 1.0  2018/11/17
  * @Description todo
  */
-public interface UserManager extends BaseManager<User>{
+public interface UserManager extends BaseManager<User> {
+    User getByLoginId(String loginId);
+
+    void lock(String urid);
 }

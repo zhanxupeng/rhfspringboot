@@ -19,7 +19,7 @@ import java.util.Optional;
  */
 public class BaseManagerImpl<T extends BaseMapper<M>, M extends BaseEntity> implements BaseManager<M> {
     @Autowired
-    private T mapper;
+    protected T mapper;
 
     @Override
     public M getById(String urid) {

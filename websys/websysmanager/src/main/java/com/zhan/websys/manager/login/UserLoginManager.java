@@ -9,4 +9,8 @@ import com.zhan.websys.entity.userlogin.UserLogin;
  */
 public interface UserLoginManager {
     UserLogin getByUserId(String userId);
+
+    void add(UserLogin userLogin);
+
+    void edit(UserLogin userLogin);
 }

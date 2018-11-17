@@ -40,7 +40,7 @@ public class UserLogin {
      * 登录失败次数
      * LOGIN_FAIL_TIMES
      */
-    private Short loginFailTimes;
+    private Integer loginFailTimes;
 
     /**
      * 上次登录失败时间
