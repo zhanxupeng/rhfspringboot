@@ -35,4 +35,16 @@ public enum ENMsgCode implements LabelAndValue<String> {
     public String getLabel() {
         return label;
     }
+
+    public static boolean isSuccess(String value) {
+        return SUCCESS.value.equals(value);
+    }
+
+    public static boolean isBusException(String value) {
+        return BUSINESS_ERROR.value.equals(value);
+    }
+
+    public static boolean isSysException(String value) {
+        return SYSTEM_EXCEPTION.value.equals(value);
+    }
 }
