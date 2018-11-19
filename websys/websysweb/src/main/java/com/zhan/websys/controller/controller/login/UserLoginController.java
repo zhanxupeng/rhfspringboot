@@ -33,14 +33,14 @@ import java.util.Enumeration;
 @RestController
 @RequestMapping("/websys/userlogin")
 public class UserLoginController extends BaseController {
-    @Reference
+    @Autowired
     private UserLoginApi userLoginApi;
     @Autowired
     private Producer captchaProducer;
 
-    @GetMapping("/test.pub")
-    public ResultContext test() {
-        return userLoginApi.ifNeetCaptcha("test");
+    @GetMapping("/ifNeetCaptcha.pub")
+    public ResultContext ifNeetCaptcha(String loginId) {
+        return userLoginApi.ifNeetCaptcha(loginId);
     }
 
     @PostMapping("/login.pub")
