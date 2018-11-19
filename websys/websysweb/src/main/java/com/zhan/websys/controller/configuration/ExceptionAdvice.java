@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class ExceptionAdvice {
     @ResponseBody
-    @ExceptionHandler(value = BusinessException.class)
-    public ResultContext handleBusinessException(BusinessException e) {
+    @ExceptionHandler(value = {BusinessException.class, IllegalArgumentException.class})
+    public ResultContext handleBusinessException(Exception e) {
         return ResultContext.businessFail(e.getMessage());
     }
 
