@@ -13,6 +13,5 @@
     <dubbo:protocol id="dubbo" name="dubbo" port="20800" dispather="all" host="127.0.0.1" threadpool="cached"/>
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:reference interface="com.zhan.websys.api.enumpath.EnumPathApi" id="enumPathApi"/>
-
-
+    <dubbo:reference interface="com.zhan.websys.api.login.UserLoginApi" id="userLoginApi"/>
 </beans>
