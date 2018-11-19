@@ -5,4 +5,6 @@ package com.zhan.websys.service.menu;
  * @version 1.0 2018/11/19
  */
 public interface MenuService {
+
+    void queryForDisplay();
 }
