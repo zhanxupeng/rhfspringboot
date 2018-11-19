@@ -1,11 +1,11 @@
 package com.zhan.websys.controller.controller.enumpath;
 
 import cn.hutool.core.lang.Assert;
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.zhan.websys.api.enumpath.EnumPathApi;
 import com.zhan.websys.api.enumpath.vo.DropDownVO;
 import com.zhan.websys.common.bean.ResultContext;
 import com.zhan.websys.controller.controller.base.BaseController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/websys/enumPath")
 public class EnumPathController extends BaseController {
-    @Reference
+    @Autowired
     private EnumPathApi enumPathApi;
 
     @GetMapping("/getEnum.pub")

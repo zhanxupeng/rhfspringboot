@@ -1,9 +1,9 @@
 package com.zhan.websys;
 
-import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * @author zhanxp
@@ -11,7 +11,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @Description todo
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@EnableDubboConfiguration
+//@EnableDubboConfiguration
+@ImportResource({"classpath:applicationContext-dubbo.xml"})
 public class WebSysWebApplication {
     public static void main(String[] args) {
         SpringApplication.run(WebSysWebApplication.class, args);
