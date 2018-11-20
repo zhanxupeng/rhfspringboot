@@ -2,7 +2,7 @@ package com.zhan.websys.service.menu.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
-import com.zhan.websys.bo.treeparser.TreeNode;
+import com.zhan.websys.bo.treeparser.TreeNodeBO;
 import com.zhan.websys.common.loginuser.UserContext;
 import com.zhan.websys.entity.menu.Menu;
 import com.zhan.websys.entity.roleuser.RoleUser;
@@ -15,7 +15,10 @@ import com.zhan.websys.service.menu.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -36,7 +39,7 @@ public class MenuServiceImpl implements MenuService {
     private MenuManager menuManager;
 
     @Override
-    public List<TreeNode> queryForDisplay() {
+    public List<TreeNodeBO> queryForDisplay() {
         RoleUser roleUser = new RoleUser();
         roleUser.setUserId(UserContext.getUserId());
         Set<String> allOperations = new HashSet<>();
@@ -102,24 +105,24 @@ public class MenuServiceImpl implements MenuService {
      * @param menuList
      * @return
      */
-    private List<TreeNode> getMenuTreeNode(List<Menu> menuList) {
-        List<TreeNode> treeNodeList = menuList.stream()
+    private List<TreeNodeBO> getMenuTreeNode(List<Menu> menuList) {
+        List<TreeNodeBO> treeNodeBOList = menuList.stream()
                 .filter(x -> StrUtil.isBlank(x.getParentId()))
                 .map(this::convertToTreeNode).collect(Collectors.toList());
 
-        treeNodeList.forEach(x -> x.setChildren(getChildren(x, menuList)));
-        return treeNodeList;
+        treeNodeBOList.forEach(x -> x.setChildren(getChildren(x, menuList)));
+        return treeNodeBOList;
     }
 
     /**
      * 获取子节点
      *
-     * @param treeNode
+     * @param treeNodeBO
      * @param menuList
      * @return
      */
-    private List<TreeNode> getChildren(TreeNode treeNode, List<Menu> menuList) {
-        List<TreeNode> list = menuList.stream().filter(x -> treeNode.getId().equals(x.getParentId())).map(this::convertToTreeNode).collect(Collectors.toList());
+    private List<TreeNodeBO> getChildren(TreeNodeBO treeNodeBO, List<Menu> menuList) {
+        List<TreeNodeBO> list = menuList.stream().filter(x -> treeNodeBO.getId().equals(x.getParentId())).map(this::convertToTreeNode).collect(Collectors.toList());
 
         if (CollectionUtil.isNotEmpty(list)) {
             list.forEach(x -> x.setChildren(getChildren(x, menuList)));
@@ -133,13 +136,13 @@ public class MenuServiceImpl implements MenuService {
      * @param x
      * @return
      */
-    private TreeNode convertToTreeNode(Menu x) {
-        TreeNode treeNodeN = new TreeNode();
-        treeNodeN.setId(x.getUrid());
-        treeNodeN.setPid(x.getParentId());
-        treeNodeN.setTitle(x.getName());
-        treeNodeN.setUrl(x.getUrl());
-        treeNodeN.setChecked(Boolean.FALSE.toString());
-        return treeNodeN;
+    private TreeNodeBO convertToTreeNode(Menu x) {
+        TreeNodeBO treeNodeBON = new TreeNodeBO();
+        treeNodeBON.setId(x.getUrid());
+        treeNodeBON.setPid(x.getParentId());
+        treeNodeBON.setTitle(x.getName());
+        treeNodeBON.setUrl(x.getUrl());
+        treeNodeBON.setChecked(Boolean.FALSE.toString());
+        return treeNodeBON;
     }
 }

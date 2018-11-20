@@ -1,6 +1,6 @@
 package com.zhan.websys.service.menu;
 
-import com.zhan.websys.bo.treeparser.TreeNode;
+import com.zhan.websys.bo.treeparser.TreeNodeBO;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface MenuService {
 
-    List<TreeNode> queryForDisplay();
+    List<TreeNodeBO> queryForDisplay();
 }

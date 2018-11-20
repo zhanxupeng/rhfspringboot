@@ -14,4 +14,5 @@
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:reference interface="com.zhan.websys.api.enumpath.EnumPathApi" id="enumPathApi"/>
     <dubbo:reference interface="com.zhan.websys.api.login.UserLoginApi" id="userLoginApi"/>
+    <dubbo:reference interface="com.zhan.websys.api.menu.MenuApi" id="menuApi"/>
 </beans>
