@@ -169,9 +169,17 @@
         AND VERSION = #{version}
     </delete>
 
-    <select id="find">
+    <select id="find" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM TSYS_USER
+    </select>
+
+    <select id="getByLoginAndPassword" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM TSYS_USER
+        WHERE LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+        AND PASSWORD = #{password,jdbcType=VARCHAR}
     </select>
 </mapper>

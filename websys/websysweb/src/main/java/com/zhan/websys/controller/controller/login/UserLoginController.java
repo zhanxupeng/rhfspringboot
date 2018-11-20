@@ -7,6 +7,8 @@ import com.google.code.kaptcha.Producer;
 import com.zhan.websys.api.login.UserLoginApi;
 import com.zhan.websys.api.login.vo.LoginVO;
 import com.zhan.websys.common.bean.ResultContext;
+import com.zhan.websys.common.enums.ENMsgCode;
+import com.zhan.websys.common.exception.BusinessException;
 import com.zhan.websys.common.loginuser.UserContext;
 import com.zhan.websys.common.loginuser.UserInfo;
 import com.zhan.websys.controller.controller.base.BaseController;
@@ -60,8 +62,11 @@ public class UserLoginController extends BaseController {
         }
         //输入完成后移除验证码
         request.getSession().removeAttribute(Constants.KAPTCHA_SESSION_KEY);
-
-        LoginVO loginVO = userLoginApi.login(loginDTO.getLoginId(), loginDTO.getPassword()).getData();
+        ResultContext<LoginVO> resultContext = userLoginApi.login(loginDTO.getLoginId(), loginDTO.getPassword());
+        if (!ENMsgCode.isSuccess(resultContext.getCode())) {
+            throw new BusinessException(resultContext.getInfo());
+        }
+        LoginVO loginVO = resultContext.getData();
         UserInfo userInfo = new UserInfo();
         userInfo.setUserId(loginVO.getUrid());
         userInfo.setLoginId(loginVO.getLoginId());

@@ -33,15 +33,15 @@ public class ResultContext<T> implements Serializable {
      */
     private T data;
 
-    public static ResultContext<String> businessFail(String info) {
-        ResultContext<String> resultContext = new ResultContext<>();
+    public static ResultContext<Void> businessFail(String info) {
+        ResultContext<Void> resultContext = new ResultContext<>();
         resultContext.setCode(ENMsgCode.BUSINESS_ERROR.getValue());
         resultContext.setInfo(info);
         return resultContext;
     }
 
-    public static ResultContext<String> systemException(String info) {
-        ResultContext<String> resultContext = new ResultContext<>();
+    public static ResultContext<Void> systemException(String info) {
+        ResultContext<Void> resultContext = new ResultContext<>();
         resultContext.setCode(ENMsgCode.SYSTEM_EXCEPTION.getValue());
         resultContext.setInfo(info);
         return resultContext;

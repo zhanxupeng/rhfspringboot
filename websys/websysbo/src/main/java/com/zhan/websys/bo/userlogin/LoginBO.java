@@ -1,17 +1,16 @@
-package com.zhan.websys.api.login.vo;
+package com.zhan.websys.bo.userlogin;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 /**
  * @author zhanxp
- * @version 1.0 2018/11/8
+ * @version 1.0  2018/11/17
+ * @Description todo
  */
 @Getter
 @Setter
-public class LoginVO implements Serializable {
+public class LoginBO {
     private String urid;
     private String loginId;
     private String name;
