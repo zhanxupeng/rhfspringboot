@@ -27,7 +27,7 @@ public class WebAspect {
             throw new SystemException("严重错误");
         }
 
-        if (ENMsgCode.isBusException(resultContext.getCode())) {
+        if (ENMsgCode.isBusinessError(resultContext.getCode())) {
             throw new BusinessException(resultContext.getInfo());
         }
 
