@@ -162,7 +162,7 @@
         AND VERSION = #{version}
     </delete>
 
-    <select id="find">
+    <select id="find" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM TSYS_MENU
