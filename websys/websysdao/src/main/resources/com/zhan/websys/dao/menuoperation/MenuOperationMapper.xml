@@ -140,4 +140,14 @@
         <include refid="Base_Column_List"/>
         FROM TSYS_MENU_OPERATION
     </select>
+
+    <select id="getMenuByIdList" resultType="string">
+        SELECT
+        DISTINCT MENU_ID
+        FROM TSYS_MENU_OPERATION
+        WHERE URID IN 
+        <foreach collection="idList" open="(" separator="," close=")" item="idItem">
+            #{idItem}
+        </foreach>
+    </select>
 </mapper>

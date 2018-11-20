@@ -167,4 +167,14 @@
         <include refid="Base_Column_List"/>
         FROM TSYS_MENU
     </select>
+
+    <select id="getByIdList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM TSYS_MENU
+        WHERE URID IN
+        <foreach collection="idList" open="(" separator="," close=")" item="idItem">
+            #{idItem}
+        </foreach>
+    </select>
 </mapper>

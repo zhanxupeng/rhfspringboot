@@ -3,8 +3,7 @@ package com.zhan.websys.entity.menu;
 import com.zhan.websys.entity.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Date;
+import lombok.ToString;
 
 /**
  * 系统菜单表
@@ -12,6 +11,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
+@ToString
 public class Menu extends BaseEntity {
 
     /**
