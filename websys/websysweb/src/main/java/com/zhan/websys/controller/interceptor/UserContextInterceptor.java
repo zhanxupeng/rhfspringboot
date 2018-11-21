@@ -18,15 +18,17 @@ public class UserContextInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        UserInfo user = (UserInfo) request.getSession().getAttribute("user");
-        if (ObjectUtil.isNull(user)) {
-            ResultContext resultContext = ResultContext.systemException("请求失败");
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(JSONUtil.toJsonStr(resultContext));
-            return false;
+        UserInfo user = (UserInfo) request.getSession().getAttribute(UserContext.USER_SESSION);
+//        if (ObjectUtil.isNull(user)) {
+//            ResultContext resultContext = ResultContext.systemException("请求失败");
+//            response.setContentType("application/json");
+//            response.setCharacterEncoding("UTF-8");
+//            response.getWriter().write(JSONUtil.toJsonStr(resultContext));
+//            return false;
+//        }
+        if (ObjectUtil.isNotNull(user)) {
+            UserContext.setUserInfo(user);
         }
-        UserContext.setUserInfo(user);
         return true;
     }
 }
