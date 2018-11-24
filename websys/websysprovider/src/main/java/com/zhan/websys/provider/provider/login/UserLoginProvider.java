@@ -5,7 +5,7 @@ import com.alibaba.dubbo.rpc.RpcContext;
 import com.zhan.websys.api.login.UserLoginApi;
 import com.zhan.websys.api.login.vo.LoginVO;
 import com.zhan.websys.bo.userlogin.LoginBO;
-import com.zhan.websys.common.bean.ResultContext;
+import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.provider.provider.BaseProvider;
 import com.zhan.websys.service.userlogin.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;

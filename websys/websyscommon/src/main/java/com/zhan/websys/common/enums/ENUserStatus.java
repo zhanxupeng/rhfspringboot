@@ -1,7 +1,8 @@
 package com.zhan.websys.common.enums;
 
 import cn.hutool.core.util.StrUtil;
-import com.zhan.websys.common.exception.BusinessException;
+import com.zhan.common.enums.LabelAndValue;
+import com.zhan.common.exception.BusinessException;
 
 import java.util.Arrays;
 

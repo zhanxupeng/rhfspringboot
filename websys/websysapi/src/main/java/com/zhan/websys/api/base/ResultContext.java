@@ -1,6 +1,7 @@
-package com.zhan.websys.common.bean;
+package com.zhan.websys.api.base;
 
-import com.zhan.websys.common.enums.ENMsgCode;
+
+import com.zhan.common.enums.ENMsgCode;
 
 import java.io.Serializable;
 

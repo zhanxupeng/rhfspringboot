@@ -1,7 +1,11 @@
 package com.zhan.websys.api.menu;
 
+import com.zhan.websys.api.base.PageQueryDTO;
+import com.zhan.websys.api.base.PageViewVO;
+import com.zhan.websys.api.base.ResultContext;
+import com.zhan.websys.api.menu.dto.MenuDTO;
+import com.zhan.websys.api.menu.vo.MenuVO;
 import com.zhan.websys.api.menu.vo.TreeNodeVO;
-import com.zhan.websys.common.bean.ResultContext;
 
 import java.util.List;
 
@@ -11,4 +15,8 @@ import java.util.List;
  */
 public interface MenuApi {
     ResultContext<List<TreeNodeVO>> queryForDisplay();
+
+    ResultContext<List<TreeNodeVO>> queryTree();
+
+    ResultContext<PageViewVO<MenuVO>> query(PageQueryDTO<MenuDTO> pageQueryDTO);
 }

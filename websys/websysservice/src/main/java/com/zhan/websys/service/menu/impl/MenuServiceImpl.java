@@ -2,8 +2,10 @@ package com.zhan.websys.service.menu.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
+import com.zhan.websys.bo.base.PageView;
 import com.zhan.websys.bo.treeparser.TreeNodeBO;
-import com.zhan.websys.common.loginuser.UserContext;
+import com.zhan.common.loginuser.UserContext;
+import com.zhan.websys.entity.base.PageQuery;
 import com.zhan.websys.entity.menu.Menu;
 import com.zhan.websys.entity.roleuser.RoleUser;
 import com.zhan.websys.manager.menu.MenuManager;
@@ -67,6 +69,22 @@ public class MenuServiceImpl implements MenuService {
 
         return getMenuTreeNode(menuList);
     }
+
+    @Override
+    public List<TreeNodeBO> queryTree() {
+        List<Menu> list = menuManager.find(new Menu());
+        return getMenuTreeNode(list);
+    }
+
+    @Override
+    public PageView<Menu> query(PageQuery<Menu> pageQuery) {
+        List<Menu> list = menuManager.pageQuery(pageQuery);
+
+        PageView<Menu> pageView = new PageView<>();
+        pageView.setData(list);
+        return pageView;
+    }
+
 //
 //    public static void main(String[] args) {
 //        MenuServiceImpl menuService = new MenuServiceImpl();

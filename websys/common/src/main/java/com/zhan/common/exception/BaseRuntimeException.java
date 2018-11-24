@@ -1,4 +1,4 @@
-package com.zhan.websys.common.exception;
+package com.zhan.common.exception;
 
 public abstract class BaseRuntimeException extends RuntimeException {
     private String code;

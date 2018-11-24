@@ -1,4 +1,4 @@
-package com.zhan.websys.common.loginuser;
+package com.zhan.common.loginuser;
 
 import cn.hutool.core.lang.Assert;
 

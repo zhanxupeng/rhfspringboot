@@ -1,4 +1,4 @@
-package com.zhan.websys.common.enums;
+package com.zhan.common.enums;
 
 import java.io.Serializable;
 

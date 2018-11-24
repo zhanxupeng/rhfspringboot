@@ -1,8 +1,8 @@
 package com.zhan.websys.controller.configuration;
 
-import com.zhan.websys.common.bean.ResultContext;
-import com.zhan.websys.common.exception.BusinessException;
-import com.zhan.websys.common.exception.SystemException;
+import com.zhan.common.exception.BusinessException;
+import com.zhan.common.exception.SystemException;
+import com.zhan.websys.api.base.ResultContext;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

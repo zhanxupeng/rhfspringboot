@@ -1,6 +1,6 @@
 package com.zhan.websys.common;
 
-import com.zhan.websys.common.enums.LabelAndValue;
+import com.zhan.common.enums.LabelAndValue;
 
 /**
  * @author zhanxp

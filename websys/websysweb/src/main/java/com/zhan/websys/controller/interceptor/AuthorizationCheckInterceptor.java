@@ -1,7 +1,7 @@
 package com.zhan.websys.controller.interceptor;
 
 import cn.hutool.json.JSONUtil;
-import com.zhan.websys.common.bean.ResultContext;
+import com.zhan.websys.api.base.ResultContext;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;

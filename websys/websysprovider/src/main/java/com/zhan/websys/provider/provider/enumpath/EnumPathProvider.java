@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.zhan.websys.api.enumpath.EnumPathApi;
 import com.zhan.websys.api.enumpath.vo.DropDownVO;
 import com.zhan.websys.bo.dropdown.DropDownBO;
-import com.zhan.websys.common.bean.ResultContext;
+import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.provider.provider.BaseProvider;
 import com.zhan.websys.service.enumpath.EnumPathService;
 import org.springframework.beans.factory.annotation.Autowired;

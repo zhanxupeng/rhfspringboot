@@ -1,10 +1,8 @@
 package com.zhan.websys.controller.interceptor;
 
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.json.JSONUtil;
-import com.zhan.websys.common.bean.ResultContext;
-import com.zhan.websys.common.loginuser.UserContext;
-import com.zhan.websys.common.loginuser.UserInfo;
+import com.zhan.common.loginuser.UserContext;
+import com.zhan.common.loginuser.UserInfo;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;

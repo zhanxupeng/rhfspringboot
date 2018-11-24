@@ -1,7 +1,7 @@
 package com.zhan.websys.provider.provider;
 
-import com.zhan.websys.common.bean.ResultContext;
-import com.zhan.websys.common.enums.ENMsgCode;
+import com.zhan.common.enums.ENMsgCode;
+import com.zhan.websys.api.base.ResultContext;
 
 /**
  * @author zhanxp

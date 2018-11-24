@@ -1,7 +1,7 @@
 package com.zhan.websys.api.login;
 
+import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.login.vo.LoginVO;
-import com.zhan.websys.common.bean.ResultContext;
 
 /**
  * @author zhanxp

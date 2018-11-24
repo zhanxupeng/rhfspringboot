@@ -1,11 +1,11 @@
 package com.zhan.websys.provider.aspect;
 
 import com.alibaba.dubbo.rpc.RpcContext;
-import com.zhan.websys.common.bean.ResultContext;
-import com.zhan.websys.common.exception.BusinessException;
-import com.zhan.websys.common.exception.SystemException;
-import com.zhan.websys.common.loginuser.UserContext;
-import com.zhan.websys.common.loginuser.UserInfo;
+import com.zhan.websys.api.base.ResultContext;
+import com.zhan.common.exception.BusinessException;
+import com.zhan.common.exception.SystemException;
+import com.zhan.common.loginuser.UserContext;
+import com.zhan.common.loginuser.UserInfo;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

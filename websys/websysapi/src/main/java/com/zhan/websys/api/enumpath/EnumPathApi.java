@@ -1,7 +1,7 @@
 package com.zhan.websys.api.enumpath;
 
+import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.enumpath.vo.DropDownVO;
-import com.zhan.websys.common.bean.ResultContext;
 
 import java.util.List;
 

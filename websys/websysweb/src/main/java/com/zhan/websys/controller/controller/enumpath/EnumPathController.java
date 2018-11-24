@@ -1,9 +1,9 @@
 package com.zhan.websys.controller.controller.enumpath;
 
 import cn.hutool.core.lang.Assert;
+import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.enumpath.EnumPathApi;
 import com.zhan.websys.api.enumpath.vo.DropDownVO;
-import com.zhan.websys.common.bean.ResultContext;
 import com.zhan.websys.controller.controller.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

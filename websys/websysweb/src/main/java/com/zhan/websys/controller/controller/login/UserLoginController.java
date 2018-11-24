@@ -1,16 +1,15 @@
 package com.zhan.websys.controller.controller.login;
 
 import cn.hutool.core.lang.Assert;
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.zhan.common.enums.ENMsgCode;
+import com.zhan.common.exception.BusinessException;
+import com.zhan.common.loginuser.UserContext;
+import com.zhan.common.loginuser.UserInfo;
+import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.login.UserLoginApi;
 import com.zhan.websys.api.login.vo.LoginVO;
-import com.zhan.websys.common.bean.ResultContext;
-import com.zhan.websys.common.enums.ENMsgCode;
-import com.zhan.websys.common.exception.BusinessException;
-import com.zhan.websys.common.loginuser.UserContext;
-import com.zhan.websys.common.loginuser.UserInfo;
 import com.zhan.websys.controller.controller.base.BaseController;
 import com.zhan.websys.controller.controller.login.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;

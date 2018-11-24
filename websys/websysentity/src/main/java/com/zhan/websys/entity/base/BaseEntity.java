@@ -2,7 +2,7 @@ package com.zhan.websys.entity.base;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.zhan.websys.common.loginuser.UserContext;
+import com.zhan.common.loginuser.UserContext;
 import lombok.Getter;
 import lombok.Setter;
 

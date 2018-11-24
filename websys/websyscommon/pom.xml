@@ -16,8 +16,6 @@
     <name>websyscommon</name>
 
     <properties>
-        <lombok.version>1.16.22</lombok.version>
-        <hutool.version>4.1.14</hutool.version>
         <guava.version>20.0</guava.version>
         <quartz.version>2.3.0</quartz.version>
         <dangdang.version>2.1.5</dangdang.version>
@@ -25,15 +23,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
+            <groupId>com.zhan</groupId>
+            <artifactId>common</artifactId>
         </dependency>
 
         <dependency>

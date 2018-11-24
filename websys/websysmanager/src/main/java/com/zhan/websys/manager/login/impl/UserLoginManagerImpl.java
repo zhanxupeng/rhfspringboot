@@ -1,17 +1,14 @@
 package com.zhan.websys.manager.login.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.IdUtil;
-import com.zhan.websys.common.exception.BusinessException;
-import com.zhan.websys.common.exception.SystemException;
+import com.zhan.common.exception.SystemException;
 import com.zhan.websys.dao.userlogin.UserLoginMapper;
 import com.zhan.websys.entity.userlogin.UserLogin;
 import com.zhan.websys.manager.login.UserLoginManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 
 /**

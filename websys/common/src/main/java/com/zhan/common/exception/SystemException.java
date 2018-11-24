@@ -1,6 +1,7 @@
-package com.zhan.websys.common.exception;
+package com.zhan.common.exception;
 
-import com.zhan.websys.common.enums.ENMsgCode;
+
+import com.zhan.common.enums.ENMsgCode;
 
 /**
  * @author zhanxp

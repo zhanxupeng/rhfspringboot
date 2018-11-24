@@ -2,7 +2,7 @@ package com.zhan.websys.manager.user.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.zhan.websys.common.enums.ENLockStatus;
-import com.zhan.websys.common.exception.SystemException;
+import com.zhan.common.exception.SystemException;
 import com.zhan.websys.dao.user.UserMapper;
 import com.zhan.websys.entity.user.User;
 import com.zhan.websys.manager.base.impl.BaseManagerImpl;
