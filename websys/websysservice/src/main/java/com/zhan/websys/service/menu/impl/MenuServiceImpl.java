@@ -55,7 +55,7 @@ public class MenuServiceImpl implements MenuService {
         }
 
         //获取用户权限
-        Set<String> userOperationList = userRightManager.getRightIdByRole(UserContext.getUserId());
+        Set<String> userOperationList = userRightManager.getRightIdByUser(UserContext.getUserId());
         allOperations.addAll(userOperationList);
 
         List<String> allMenuList = new LinkedList<>();
@@ -85,7 +85,12 @@ public class MenuServiceImpl implements MenuService {
         return pageView;
     }
 
-//
+    @Override
+    public void add(Menu menu) {
+        menuManager.insert(menu);
+    }
+
+    //
 //    public static void main(String[] args) {
 //        MenuServiceImpl menuService = new MenuServiceImpl();
 //

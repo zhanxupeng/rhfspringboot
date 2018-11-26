@@ -4,8 +4,6 @@ import com.zhan.websys.entity.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 /**
  * 用户权限表
  * TSYS_USER_RIGHT

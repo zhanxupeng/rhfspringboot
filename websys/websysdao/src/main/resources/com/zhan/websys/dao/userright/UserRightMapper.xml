@@ -118,4 +118,11 @@
         <include refid="Base_Column_List"/>
         FROM TSYS_USER_RIGHT
     </select>
+
+    <delete id="deleteByUserAndRight">
+        DELETE
+        FROM TSYS_USER_RIGHT
+        WHERE USER_ID = #{userId,jdbcType=VARCHAR}
+        AND OPERATION_ID = #{operationId,jdbcType=VARCHAR}
+    </delete>
 </mapper>

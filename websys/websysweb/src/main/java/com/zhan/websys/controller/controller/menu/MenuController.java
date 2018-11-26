@@ -4,14 +4,13 @@ import com.zhan.websys.api.base.PageQueryDTO;
 import com.zhan.websys.api.base.PageViewVO;
 import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.menu.MenuApi;
+import com.zhan.websys.api.menu.dto.MenuAddDTO;
 import com.zhan.websys.api.menu.dto.MenuDTO;
 import com.zhan.websys.api.menu.vo.MenuVO;
 import com.zhan.websys.api.menu.vo.TreeNodeVO;
 import com.zhan.websys.controller.controller.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,5 +37,10 @@ public class MenuController extends BaseController {
     @GetMapping("query.do")
     public ResultContext<PageViewVO<MenuVO>> query(PageQueryDTO<MenuDTO> pageQueryDTO) {
         return menuApi.query(pageQueryDTO);
+    }
+
+    @PostMapping("add.do")
+    public ResultContext<Void> add(@RequestBody MenuAddDTO menuAddDTO) {
+        return menuApi.add(menuAddDTO);
     }
 }

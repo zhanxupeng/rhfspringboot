@@ -18,4 +18,6 @@ public interface MenuService {
     List<TreeNodeBO> queryTree();
 
     PageView<Menu> query(PageQuery<Menu> pageQuery);
+
+    void add(Menu menu);
 }

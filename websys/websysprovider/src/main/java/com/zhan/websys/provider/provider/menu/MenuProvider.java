@@ -1,10 +1,12 @@
 package com.zhan.websys.provider.provider.menu;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.zhan.websys.api.base.PageQueryDTO;
 import com.zhan.websys.api.base.PageViewVO;
 import com.zhan.websys.api.menu.MenuApi;
+import com.zhan.websys.api.menu.dto.MenuAddDTO;
 import com.zhan.websys.api.menu.dto.MenuDTO;
 import com.zhan.websys.api.menu.vo.MenuVO;
 import com.zhan.websys.api.menu.vo.TreeNodeVO;
@@ -51,6 +53,14 @@ public class MenuProvider extends BaseProvider implements MenuApi {
         PageView<Menu> pageViewVO = menuService.query(convertToPageQuery(pageQueryDTO));
 
         return success(convertToPageViewVO(pageViewVO));
+    }
+
+    @Override
+    public ResultContext<Void> add(MenuAddDTO menuAddDTO) {
+        Menu menu = new Menu();
+        BeanUtil.copyProperties(menuAddDTO, menu);
+        menuService.add(menu);
+        return success();
     }
 
     private PageViewVO<MenuVO> convertToPageViewVO(PageView<Menu> pageView) {
