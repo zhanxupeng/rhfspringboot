@@ -11,4 +11,11 @@ import java.util.List;
 public interface MenuService {
 
     List<TreeNodeBO> queryForDisplay();
+
+    /**
+     * 用户修改权限的树形结构
+     *
+     * @return
+     */
+    List<TreeNodeBO> userTree();
 }

@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface MenuApi {
     ResultContext<List<TreeNodeVO>> queryForDisplay();
+
+    ResultContext<List<TreeNodeVO>> userTree();
 }

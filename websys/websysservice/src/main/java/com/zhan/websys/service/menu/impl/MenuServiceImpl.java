@@ -3,7 +3,6 @@ package com.zhan.websys.service.menu.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.zhan.websys.bo.treeparser.TreeNodeBO;
-import com.zhan.websys.common.loginuser.UserContext;
 import com.zhan.websys.entity.menu.Menu;
 import com.zhan.websys.entity.roleuser.RoleUser;
 import com.zhan.websys.manager.menu.MenuManager;
@@ -12,6 +11,7 @@ import com.zhan.websys.manager.roleright.RoleRightManager;
 import com.zhan.websys.manager.roleuser.RoleUserManager;
 import com.zhan.websys.manager.userright.UserRightManager;
 import com.zhan.websys.service.menu.MenuService;
+import com.zhan.websys.service.menuoperation.MenuOperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,11 +37,14 @@ public class MenuServiceImpl implements MenuService {
     private MenuOperationManager menuOperationManager;
     @Autowired
     private MenuManager menuManager;
+    @Autowired
+    private MenuOperationService menuOperationService;
 
     @Override
     public List<TreeNodeBO> queryForDisplay() {
         RoleUser roleUser = new RoleUser();
-        roleUser.setUserId(UserContext.getUserId());
+        //roleUser.setUserId(UserContext.getUserId());
+        roleUser.setUserId("1");
         Set<String> allOperations = new HashSet<>();
         //获取角色权限
         List<String> roleIdList = roleUserManager.find(roleUser).stream()
@@ -53,7 +56,8 @@ public class MenuServiceImpl implements MenuService {
         }
 
         //获取用户权限
-        Set<String> userOperationList = userRightManager.getRightIdByRole(UserContext.getUserId());
+        //Set<String> userOperationList = userRightManager.getRightIdByRole(UserContext.getUserId());
+        Set<String> userOperationList = userRightManager.getRightIdByRole("1");
         allOperations.addAll(userOperationList);
 
         List<String> allMenuList = new LinkedList<>();
@@ -67,6 +71,43 @@ public class MenuServiceImpl implements MenuService {
 
         return getMenuTreeNode(menuList);
     }
+
+    @Override
+    public List<TreeNodeBO> userTree() {
+        List<TreeNodeBO> operationList = menuOperationService.getOperationNode();
+
+        List<Menu> list = menuManager.find(new Menu());
+        List<TreeNodeBO> menuList = list.stream().map(x -> {
+            TreeNodeBO treeNodeBO = new TreeNodeBO();
+            treeNodeBO.setId(x.getUrid());
+            treeNodeBO.setPid(x.getParentId());
+            treeNodeBO.setUrl(x.getUrl());
+            treeNodeBO.setTitle(x.getName());
+            return treeNodeBO;
+        }).collect(Collectors.toList());
+
+        menuList.addAll(operationList);
+        return listToTree(menuList);
+    }
+
+    private List<TreeNodeBO> listToTree(List<TreeNodeBO> list) {
+        List<TreeNodeBO> treeNodeBOList = list.stream().filter(x -> StrUtil.isBlank(x.getPid())).collect(Collectors.toList());
+
+        if (CollectionUtil.isNotEmpty(treeNodeBOList)) {
+            treeNodeBOList.forEach(x -> x.setChildren(getTreeChildren(x, list)));
+        }
+        return treeNodeBOList;
+    }
+
+    private List<TreeNodeBO> getTreeChildren(TreeNodeBO treeNodeBO, List<TreeNodeBO> list) {
+        List<TreeNodeBO> childrenList = list.stream().filter(x -> treeNodeBO.getId().equals(x.getPid())).collect(Collectors.toList());
+
+        if (CollectionUtil.isNotEmpty(childrenList)) {
+            childrenList.forEach(x -> x.setChildren(getTreeChildren(x, list)));
+        }
+        return childrenList;
+    }
+
 //
 //    public static void main(String[] args) {
 //        MenuServiceImpl menuService = new MenuServiceImpl();

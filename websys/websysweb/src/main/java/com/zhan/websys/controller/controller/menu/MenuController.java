@@ -25,4 +25,6 @@ public class MenuController extends BaseController {
     public ResultContext<List<TreeNodeVO>> display() {
         return menuApi.queryForDisplay();
     }
+
+
 }
