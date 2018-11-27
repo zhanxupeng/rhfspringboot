@@ -22,4 +22,6 @@ public interface MenuApi {
     ResultContext<PageViewVO<MenuVO>> query(PageQueryDTO<MenuDTO> pageQueryDTO);
 
     ResultContext<Void> add(MenuAddDTO menuAddDTO);
+
+    ResultContext<List<TreeNodeVO>> userTree();
 }

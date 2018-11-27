@@ -20,4 +20,11 @@ public interface MenuService {
     PageView<Menu> query(PageQuery<Menu> pageQuery);
 
     void add(Menu menu);
+
+    /**
+     * 用户修改权限的树形结构
+     *
+     * @return
+     */
+    List<TreeNodeBO> userTree();
 }

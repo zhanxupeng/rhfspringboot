@@ -29,4 +29,12 @@ public class MenuOperationProvider extends BaseProvider implements MenuOperation
         menuOperationService.add(menuOperation);
         return success();
     }
+
+    @Override
+    public ResultContext<Void> edit(MenuOperationEditDTO menuOperationEditDTO) {
+        MenuOperation menuOperation = new MenuOperation();
+        BeanUtil.copyProperties(menuOperationEditDTO, menuOperation);
+        menuOperationService.edit(menuOperation);
+        return success();
+    }
 }

@@ -11,12 +11,8 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class MenuOperationAddDTO implements Serializable {
-    /**
-     * 菜单ID
-     * MENU_ID
-     */
-    private String menuId;
+public class MenuOperationEditDTO implements Serializable {
+    private String urid;
 
     /**
      * 菜单操作代码
@@ -41,4 +37,6 @@ public class MenuOperationAddDTO implements Serializable {
      * ACTIVE_FLAG
      */
     private String activeFlag;
+
+    private Integer rowVersion;
 }

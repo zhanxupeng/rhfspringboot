@@ -94,6 +94,13 @@ public class MenuProvider extends BaseProvider implements MenuApi {
         return pageQuery;
     }
 
+    @Override
+    public ResultContext<List<TreeNodeVO>> userTree() {
+        List<TreeNodeBO> list = menuService.userTree();
+
+        return success(convertToTreeNodeVO(list));
+    }
+
     private List<TreeNodeVO> convertToTreeNodeVO(List<TreeNodeBO> list) {
         return list.stream().map(x -> {
             TreeNodeVO treeNodeVO = new TreeNodeVO();
