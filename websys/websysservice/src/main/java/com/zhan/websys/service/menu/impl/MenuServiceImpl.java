@@ -60,7 +60,7 @@ public class MenuServiceImpl implements MenuService {
 
         //获取用户权限
         //Set<String> userOperationList = userRightManager.getRightIdByRole(UserContext.getUserId());
-        Set<String> userOperationList = userRightManager.getRightIdByRole("1");
+        Set<String> userOperationList = userRightManager.getRightIdByUser("1");
         allOperations.addAll(userOperationList);
 
         List<String> allMenuList = new LinkedList<>();

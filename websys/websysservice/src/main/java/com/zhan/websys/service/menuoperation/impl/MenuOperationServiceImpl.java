@@ -1,7 +1,7 @@
 package com.zhan.websys.service.menuoperation.impl;
 
+import com.zhan.common.loginuser.UserContext;
 import com.zhan.websys.bo.treeparser.TreeNodeBO;
-import com.zhan.websys.common.loginuser.UserContext;
 import com.zhan.websys.entity.menuoperation.MenuOperation;
 import com.zhan.websys.manager.menu.MenuManager;
 import com.zhan.websys.manager.menuoperation.MenuOperationManager;
@@ -32,7 +32,7 @@ public class MenuOperationServiceImpl implements MenuOperationService {
     public List<TreeNodeBO> getOperationNode() {
         List<MenuOperation> list = menuOperationManager.find(new MenuOperation());
 
-        Set<String> userOperation = userRightManager.getRightIdByRole(UserContext.getUserId());
+        Set<String> userOperation = userRightManager.getRightIdByUser(UserContext.getUserId());
 
         return list.stream().map(x -> {
             TreeNodeBO treeNodeBO = new TreeNodeBO();

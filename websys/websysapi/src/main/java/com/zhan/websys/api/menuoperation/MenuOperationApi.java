@@ -1,8 +1,8 @@
 package com.zhan.websys.api.menuoperation;
 
+import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.menuoperation.dto.MenuOperationAddDTO;
 import com.zhan.websys.api.menuoperation.dto.MenuOperationEditDTO;
-import com.zhan.websys.common.bean.ResultContext;
 
 /**
  * @author zhanxp

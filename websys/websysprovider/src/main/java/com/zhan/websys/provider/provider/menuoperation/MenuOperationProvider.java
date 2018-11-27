@@ -5,6 +5,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.menuoperation.MenuOperationApi;
 import com.zhan.websys.api.menuoperation.dto.MenuOperationAddDTO;
+import com.zhan.websys.api.menuoperation.dto.MenuOperationEditDTO;
 import com.zhan.websys.entity.menuoperation.MenuOperation;
 import com.zhan.websys.provider.provider.BaseProvider;
 import com.zhan.websys.service.menuoperation.MenuOperationService;
