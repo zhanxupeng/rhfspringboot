@@ -3,6 +3,7 @@ package com.zhan.websys.service.menuoperation.impl;
 import com.zhan.websys.bo.treeparser.TreeNodeBO;
 import com.zhan.websys.common.loginuser.UserContext;
 import com.zhan.websys.entity.menuoperation.MenuOperation;
+import com.zhan.websys.manager.menu.MenuManager;
 import com.zhan.websys.manager.menuoperation.MenuOperationManager;
 import com.zhan.websys.manager.userright.UserRightManager;
 import com.zhan.websys.service.menuoperation.MenuOperationService;
@@ -19,6 +20,8 @@ import java.util.stream.Collectors;
  */
 @Service
 public class MenuOperationServiceImpl implements MenuOperationService {
+    @Autowired
+    private MenuManager menuManager;
     @Autowired
     private MenuOperationManager menuOperationManager;
 
@@ -42,5 +45,18 @@ public class MenuOperationServiceImpl implements MenuOperationService {
             }
             return treeNodeBO;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public void add(MenuOperation menuOperation) {
+        //校验菜单是否存在
+        menuManager.getById(menuOperation.getMenuId());
+
+        menuOperationManager.insert(menuOperation);
+    }
+
+    @Override
+    public void edit(MenuOperation menuOperation) {
+        menuOperationManager.update(menuOperation);
     }
 }

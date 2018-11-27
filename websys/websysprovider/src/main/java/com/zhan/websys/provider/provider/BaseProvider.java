@@ -18,8 +18,8 @@ public class BaseProvider {
         return resultContext;
     }
 
-    protected ResultContext<String> success() {
-        ResultContext<String> resultContext = new ResultContext<>();
+    protected ResultContext<Void> success() {
+        ResultContext<Void> resultContext = new ResultContext<>();
         resultContext.setCode(ENMsgCode.SUCCESS.getValue());
         resultContext.setInfo(SUCCESS);
         return resultContext;

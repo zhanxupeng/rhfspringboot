@@ -1,6 +1,7 @@
 package com.zhan.websys.service.menuoperation;
 
 import com.zhan.websys.bo.treeparser.TreeNodeBO;
+import com.zhan.websys.entity.menuoperation.MenuOperation;
 
 import java.util.List;
 
@@ -10,4 +11,8 @@ import java.util.List;
  */
 public interface MenuOperationService {
     List<TreeNodeBO> getOperationNode();
+
+    void add(MenuOperation menuOperation);
+
+    void edit(MenuOperation menuOperation);
 }
