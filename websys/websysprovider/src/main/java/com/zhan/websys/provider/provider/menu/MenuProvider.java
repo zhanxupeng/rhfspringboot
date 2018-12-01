@@ -2,9 +2,11 @@ package com.zhan.websys.provider.provider.menu;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.zhan.websys.api.base.PageQueryDTO;
 import com.zhan.websys.api.base.PageViewVO;
+import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.menu.MenuApi;
 import com.zhan.websys.api.menu.dto.MenuAddDTO;
 import com.zhan.websys.api.menu.dto.MenuDTO;
@@ -12,7 +14,8 @@ import com.zhan.websys.api.menu.vo.MenuVO;
 import com.zhan.websys.api.menu.vo.TreeNodeVO;
 import com.zhan.websys.bo.base.PageView;
 import com.zhan.websys.bo.treeparser.TreeNodeBO;
-import com.zhan.websys.api.base.ResultContext;
+import com.zhan.websys.common.enums.ENMenuActiveFlag;
+import com.zhan.websys.common.enums.ENMenuShowFlag;
 import com.zhan.websys.entity.base.PageQuery;
 import com.zhan.websys.entity.menu.Menu;
 import com.zhan.websys.provider.provider.BaseProvider;
@@ -68,6 +71,11 @@ public class MenuProvider extends BaseProvider implements MenuApi {
         List<MenuVO> menuVOList = menuList.stream().map(x -> {
             MenuVO menuVO = new MenuVO();
             BeanUtils.copyProperties(x, menuVO);
+            if (StrUtil.isNotBlank(x.getParentId())) {
+                menuVO.setParentName(menuService.getById(x.getParentId()).getName());
+            }
+            menuVO.setActiveFlagShow(ENMenuActiveFlag.getLabelByValue(x.getActiveFlag()));
+            menuVO.setShowFlagShow(ENMenuShowFlag.getLabelByValue(x.getShowFlag()));
             return menuVO;
         }).collect(Collectors.toList());
 
@@ -104,6 +112,7 @@ public class MenuProvider extends BaseProvider implements MenuApi {
     private List<TreeNodeVO> convertToTreeNodeVO(List<TreeNodeBO> list) {
         return list.stream().map(x -> {
             TreeNodeVO treeNodeVO = new TreeNodeVO();
+            treeNodeVO.setUrid(x.getId());
             treeNodeVO.setTitle(x.getTitle());
             treeNodeVO.setPid(x.getPid());
             treeNodeVO.setChecked(x.getChecked());

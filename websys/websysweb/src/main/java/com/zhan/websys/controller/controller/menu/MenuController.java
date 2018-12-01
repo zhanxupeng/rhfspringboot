@@ -1,5 +1,6 @@
 package com.zhan.websys.controller.controller.menu;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.zhan.websys.api.base.PageQueryDTO;
 import com.zhan.websys.api.base.PageViewVO;
 import com.zhan.websys.api.base.ResultContext;
@@ -9,10 +10,12 @@ import com.zhan.websys.api.menu.dto.MenuDTO;
 import com.zhan.websys.api.menu.vo.MenuVO;
 import com.zhan.websys.api.menu.vo.TreeNodeVO;
 import com.zhan.websys.controller.controller.base.BaseController;
+import com.zhan.websys.controller.controller.menu.vo.QueryTreeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author zhanxp
@@ -30,12 +33,27 @@ public class MenuController extends BaseController {
     }
 
     @GetMapping("/queryTree.do")
-    public ResultContext<List<TreeNodeVO>> queryTree() {
-        return menuApi.queryTree();
+    public ResultContext<List<QueryTreeVO>> queryTree() {
+        List<TreeNodeVO> list = menuApi.queryTree().getData();
+
+        return success(convertToQueryTreeVO(list));
     }
 
-    @GetMapping("query.do")
-    public ResultContext<PageViewVO<MenuVO>> query(PageQueryDTO<MenuDTO> pageQueryDTO) {
+    private List<QueryTreeVO> convertToQueryTreeVO(List<TreeNodeVO> list) {
+        return list.stream().map(x -> {
+            QueryTreeVO queryTreeVO = new QueryTreeVO();
+            queryTreeVO.setTitle(x.getTitle());
+            queryTreeVO.setValue(x.getUrid());
+            if (CollectionUtil.isNotEmpty(x.getChildren())) {
+                queryTreeVO.setExpand(Boolean.TRUE);
+                queryTreeVO.setChildren(convertToQueryTreeVO(x.getChildren()));
+            }
+            return queryTreeVO;
+        }).collect(Collectors.toList());
+    }
+
+    @PostMapping("query.do")
+    public ResultContext<PageViewVO<MenuVO>> query(@RequestBody PageQueryDTO<MenuDTO> pageQueryDTO) {
         return menuApi.query(pageQueryDTO);
     }
 

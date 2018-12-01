@@ -4,7 +4,6 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.zhan.websys.bo.base.PageView;
 import com.zhan.websys.bo.treeparser.TreeNodeBO;
-import com.zhan.common.loginuser.UserContext;
 import com.zhan.websys.entity.base.PageQuery;
 import com.zhan.websys.entity.menu.Menu;
 import com.zhan.websys.entity.roleuser.RoleUser;
@@ -113,6 +112,11 @@ public class MenuServiceImpl implements MenuService {
 
         menuList.addAll(operationList);
         return listToTree(menuList);
+    }
+
+    @Override
+    public Menu getById(String urid) {
+        return menuManager.getById(urid);
     }
 
     private List<TreeNodeBO> listToTree(List<TreeNodeBO> list) {

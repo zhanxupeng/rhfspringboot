@@ -16,6 +16,8 @@ import java.util.List;
 @ToString
 public class TreeNodeVO implements Serializable {
     private static final long serialVersionUID = 992753296337119909L;
+    private String urid;
+
     private String title;
 
     private String checked;

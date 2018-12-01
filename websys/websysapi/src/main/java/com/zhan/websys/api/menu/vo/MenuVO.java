@@ -3,6 +3,8 @@ package com.zhan.websys.api.menu.vo;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 /**
  * @author zhanxp
  * @version 1.0  2018/11/24
@@ -10,7 +12,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class MenuVO {
+public class MenuVO implements Serializable {
 
     /**
      * 菜单编码
@@ -40,13 +42,14 @@ public class MenuVO {
      * 是否启用：0-否，1-是
      * ACTIVE_FLAG
      */
-    private String activeFlag;
+    private String activeFlagShow;
 
     /**
      * 上级菜单ID
      * PARENT_ID
      */
     private String parentId;
+    private String parentName;
 
     /**
      * 菜单索引路径
@@ -64,5 +67,5 @@ public class MenuVO {
      * 是否在菜单树展示：0-否，1-是
      * SHOW_FLAG
      */
-    private String showFlag;
+    private String showFlagShow;
 }

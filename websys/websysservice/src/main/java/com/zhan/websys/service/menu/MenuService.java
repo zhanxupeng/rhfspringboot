@@ -27,4 +27,6 @@ public interface MenuService {
      * @return
      */
     List<TreeNodeBO> userTree();
+
+    Menu getById(String urid);
 }
