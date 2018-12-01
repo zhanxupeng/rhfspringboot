@@ -35,7 +35,7 @@ public class UserLoginServiceImpl implements UserLoginService {
     public boolean ifNeetCaptcha(String loginId) {
         boolean needCaptcha = Boolean.TRUE;
         User user = userManager.getByLoginId(loginId);
-        
+
         if (ObjectUtil.isNotNull(user)) {
             UserLogin userLogin = userLoginManager.getByUserId(user.getUrid());
             //第一次登录或者上一次登录成功的不需要验证码
@@ -113,6 +113,7 @@ public class UserLoginServiceImpl implements UserLoginService {
             Date lastLoginDate = ObjectUtil.isNull(userLogin.getLastFailDate()) ? userLogin.getLastLoginDate() :
                     (userLogin.getLastLoginDate().after(userLogin.getLastFailDate()) ?
                             userLogin.getLastLoginDate() : userLogin.getLastFailDate());
+            lastLoginDate = lastLoginDate == null ? new Date() : lastLoginDate;
 
             //若超过三个月(90天)未登录则锁定用户，不允许登录
             long betweenDay = DateUtil.betweenDay(lastLoginDate, new Date(), Boolean.TRUE);
