@@ -1,7 +1,6 @@
 package com.zhan.websys.manager.base.impl;
 
 import com.zhan.common.exception.BusinessException;
-import com.zhan.common.exception.SystemException;
 import com.zhan.websys.dao.base.BaseMapper;
 import com.zhan.websys.entity.base.BaseEntity;
 import com.zhan.websys.entity.base.PageQuery;
@@ -31,7 +30,7 @@ public class BaseManagerImpl<T extends BaseMapper<M>, M extends BaseEntity> impl
         entity.init();
         int insert = mapper.insert(entity);
         if (insert != 1) {
-            throw new SystemException("插入记录发生异常");
+            throw new BusinessException("插入记录发生异常");
         }
     }
 
@@ -40,7 +39,7 @@ public class BaseManagerImpl<T extends BaseMapper<M>, M extends BaseEntity> impl
         entity.edit();
         int edit = mapper.update(entity);
         if (edit != 1) {
-            throw new SystemException("更新记录发生异常");
+            throw new BusinessException("更新记录发生异常");
         }
     }
 
@@ -50,7 +49,7 @@ public class BaseManagerImpl<T extends BaseMapper<M>, M extends BaseEntity> impl
         list.forEach(x -> {
             int delete = mapper.delete(x.getUrid(), x.getVersion());
             if (delete != 1) {
-                throw new SystemException("删除记录发生异常");
+                throw new BusinessException("删除记录发生异常");
             }
         });
     }

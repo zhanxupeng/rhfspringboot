@@ -119,6 +119,11 @@ public class MenuServiceImpl implements MenuService {
         return menuManager.getById(urid);
     }
 
+    @Override
+    public void delete(List<Menu> list) {
+        menuManager.deletes(list);
+    }
+
     private List<TreeNodeBO> listToTree(List<TreeNodeBO> list) {
         List<TreeNodeBO> treeNodeBOList = list.stream().filter(x -> StrUtil.isBlank(x.getPid())).collect(Collectors.toList());
 

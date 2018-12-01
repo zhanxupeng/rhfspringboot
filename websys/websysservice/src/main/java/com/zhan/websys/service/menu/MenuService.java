@@ -29,4 +29,6 @@ public interface MenuService {
     List<TreeNodeBO> userTree();
 
     Menu getById(String urid);
+
+    void delete(List<Menu> list);
 }

@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 public class MenuVO implements Serializable {
+    private String urid;
 
     /**
      * 菜单编码
@@ -68,4 +69,6 @@ public class MenuVO implements Serializable {
      * SHOW_FLAG
      */
     private String showFlagShow;
+
+    private Long version;
 }

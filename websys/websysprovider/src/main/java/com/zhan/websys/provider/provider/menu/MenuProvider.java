@@ -10,6 +10,7 @@ import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.menu.MenuApi;
 import com.zhan.websys.api.menu.dto.MenuAddDTO;
 import com.zhan.websys.api.menu.dto.MenuDTO;
+import com.zhan.websys.api.menu.dto.MenuDeleteDTO;
 import com.zhan.websys.api.menu.vo.MenuVO;
 import com.zhan.websys.api.menu.vo.TreeNodeVO;
 import com.zhan.websys.bo.base.PageView;
@@ -66,6 +67,28 @@ public class MenuProvider extends BaseProvider implements MenuApi {
         return success();
     }
 
+    @Override
+    public ResultContext<List<TreeNodeVO>> userTree() {
+        List<TreeNodeBO> list = menuService.userTree();
+
+        return success(convertToTreeNodeVO(list));
+    }
+
+    @Override
+    public ResultContext<Void> delete(List<MenuDeleteDTO> list) {
+        menuService.delete(deleteConvertToMenu(list));
+
+        return success();
+    }
+
+    private List<Menu> deleteConvertToMenu(List<MenuDeleteDTO> list) {
+        return list.stream().map(x -> {
+            Menu menu = new Menu();
+            BeanUtil.copyProperties(x, menu);
+            return menu;
+        }).collect(Collectors.toList());
+    }
+
     private PageViewVO<MenuVO> convertToPageViewVO(PageView<Menu> pageView) {
         List<Menu> menuList = pageView.getData();
         List<MenuVO> menuVOList = menuList.stream().map(x -> {
@@ -102,13 +125,6 @@ public class MenuProvider extends BaseProvider implements MenuApi {
         return pageQuery;
     }
 
-    @Override
-    public ResultContext<List<TreeNodeVO>> userTree() {
-        List<TreeNodeBO> list = menuService.userTree();
-
-        return success(convertToTreeNodeVO(list));
-    }
-
     private List<TreeNodeVO> convertToTreeNodeVO(List<TreeNodeBO> list) {
         return list.stream().map(x -> {
             TreeNodeVO treeNodeVO = new TreeNodeVO();
@@ -122,6 +138,5 @@ public class MenuProvider extends BaseProvider implements MenuApi {
             }
             return treeNodeVO;
         }).collect(Collectors.toList());
-
     }
 }

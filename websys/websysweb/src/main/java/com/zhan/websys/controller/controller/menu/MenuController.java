@@ -7,6 +7,7 @@ import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.menu.MenuApi;
 import com.zhan.websys.api.menu.dto.MenuAddDTO;
 import com.zhan.websys.api.menu.dto.MenuDTO;
+import com.zhan.websys.api.menu.dto.MenuDeleteDTO;
 import com.zhan.websys.api.menu.vo.MenuVO;
 import com.zhan.websys.api.menu.vo.TreeNodeVO;
 import com.zhan.websys.controller.controller.base.BaseController;
@@ -60,5 +61,10 @@ public class MenuController extends BaseController {
     @PostMapping("add.do")
     public ResultContext<Void> add(@RequestBody MenuAddDTO menuAddDTO) {
         return menuApi.add(menuAddDTO);
+    }
+
+    @PostMapping("delete.do")
+    public ResultContext<Void> delete(@RequestBody List<MenuDeleteDTO> list) {
+        return menuApi.delete(list);
     }
 }

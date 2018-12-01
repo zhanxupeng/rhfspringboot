@@ -5,6 +5,7 @@ import com.zhan.websys.api.base.PageViewVO;
 import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.menu.dto.MenuAddDTO;
 import com.zhan.websys.api.menu.dto.MenuDTO;
+import com.zhan.websys.api.menu.dto.MenuDeleteDTO;
 import com.zhan.websys.api.menu.vo.MenuVO;
 import com.zhan.websys.api.menu.vo.TreeNodeVO;
 
@@ -24,4 +25,6 @@ public interface MenuApi {
     ResultContext<Void> add(MenuAddDTO menuAddDTO);
 
     ResultContext<List<TreeNodeVO>> userTree();
+
+    ResultContext<Void> delete(List<MenuDeleteDTO> list);
 }
