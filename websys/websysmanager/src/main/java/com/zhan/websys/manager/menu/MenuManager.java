@@ -14,4 +14,8 @@ public interface MenuManager extends BaseManager<Menu> {
     List<String> getParentIdByIdList(Collection<String> idList);
 
     List<Menu> getByIdList(Collection<String> idList);
+
+    void enable(List<Menu> list);
+
+    void disable(List<Menu> list);
 }

@@ -3,9 +3,7 @@ package com.zhan.websys.api.menu;
 import com.zhan.websys.api.base.PageQueryDTO;
 import com.zhan.websys.api.base.PageViewVO;
 import com.zhan.websys.api.base.ResultContext;
-import com.zhan.websys.api.menu.dto.MenuAddDTO;
-import com.zhan.websys.api.menu.dto.MenuDTO;
-import com.zhan.websys.api.menu.dto.MenuDeleteDTO;
+import com.zhan.websys.api.menu.dto.*;
 import com.zhan.websys.api.menu.vo.MenuVO;
 import com.zhan.websys.api.menu.vo.TreeNodeVO;
 
@@ -27,4 +25,12 @@ public interface MenuApi {
     ResultContext<List<TreeNodeVO>> userTree();
 
     ResultContext<Void> delete(List<MenuDeleteDTO> list);
+
+    ResultContext<Void> edit(MenuEditDTO menuEditDTO);
+
+    ResultContext<MenuVO> getById(String urid);
+
+    ResultContext<Void> enable(List<MenuEnableDTO> list);
+
+    ResultContext<Void> disable(List<MenuDisableDTO> list);
 }

@@ -203,4 +203,13 @@
             #{idItem}
         </foreach>
     </select>
+
+    <update id="updateActiveFlag">
+        UPDATE TSYS_MENU
+        SET VERSION = VERSION + 1,
+        ACTIVE_FLAG = #{activeFlag}
+        WHERE URID = #{urid}
+        AND VERSION = #{version}
+        AND ACTIVE_FLAG = #{preActiveFlag}
+    </update>
 </mapper>

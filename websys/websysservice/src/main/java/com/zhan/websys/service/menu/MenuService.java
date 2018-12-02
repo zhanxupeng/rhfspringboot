@@ -31,4 +31,10 @@ public interface MenuService {
     Menu getById(String urid);
 
     void delete(List<Menu> list);
+
+    void edit(Menu menu);
+
+    void enable(List<Menu> list);
+
+    void disable(List<Menu> list);
 }

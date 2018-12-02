@@ -1,4 +1,4 @@
-package com.zhan.websys.api.menu.vo;
+package com.zhan.websys.api.menu.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,20 +7,15 @@ import java.io.Serializable;
 
 /**
  * @author zhanxp
- * @version 1.0  2018/11/24
+ * @version 1.0  2018/12/2
  * @Description todo
  */
-@Setter
 @Getter
-public class MenuVO implements Serializable {
+@Setter
+public class MenuEditDTO implements Serializable {
+
     private String urid;
-
-    /**
-     * 菜单编码
-     * CODE
-     */
-    private String code;
-
+    private Long version;
     /**
      * 菜单名称
      * NAME
@@ -40,18 +35,10 @@ public class MenuVO implements Serializable {
     private String url;
 
     /**
-     * 是否启用：0-否，1-是
-     * ACTIVE_FLAG
-     */
-    private String activeFlag;
-    private String activeFlagShow;
-
-    /**
      * 上级菜单ID
      * PARENT_ID
      */
     private String parentId;
-    private String parentName;
 
     /**
      * 菜单索引路径
@@ -70,7 +57,4 @@ public class MenuVO implements Serializable {
      * SHOW_FLAG
      */
     private String showFlag;
-    private String showFlagShow;
-
-    private Long version;
 }

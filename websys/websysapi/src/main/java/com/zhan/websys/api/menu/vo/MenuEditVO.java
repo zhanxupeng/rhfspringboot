@@ -3,16 +3,14 @@ package com.zhan.websys.api.menu.vo;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 /**
  * @author zhanxp
- * @version 1.0  2018/11/24
+ * @version 1.0  2018/12/2
  * @Description todo
  */
-@Setter
 @Getter
-public class MenuVO implements Serializable {
+@Setter
+public class MenuEditVO {
     private String urid;
 
     /**
@@ -43,7 +41,6 @@ public class MenuVO implements Serializable {
      * 是否启用：0-否，1-是
      * ACTIVE_FLAG
      */
-    private String activeFlag;
     private String activeFlagShow;
 
     /**
@@ -69,7 +66,6 @@ public class MenuVO implements Serializable {
      * 是否在菜单树展示：0-否，1-是
      * SHOW_FLAG
      */
-    private String showFlag;
     private String showFlagShow;
 
     private Long version;

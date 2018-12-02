@@ -2,15 +2,12 @@ package com.zhan.websys.provider.provider.menu;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.StrUtil;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.zhan.websys.api.base.PageQueryDTO;
 import com.zhan.websys.api.base.PageViewVO;
 import com.zhan.websys.api.base.ResultContext;
 import com.zhan.websys.api.menu.MenuApi;
-import com.zhan.websys.api.menu.dto.MenuAddDTO;
-import com.zhan.websys.api.menu.dto.MenuDTO;
-import com.zhan.websys.api.menu.dto.MenuDeleteDTO;
+import com.zhan.websys.api.menu.dto.*;
 import com.zhan.websys.api.menu.vo.MenuVO;
 import com.zhan.websys.api.menu.vo.TreeNodeVO;
 import com.zhan.websys.bo.base.PageView;
@@ -35,6 +32,7 @@ import java.util.stream.Collectors;
 @Service(interfaceClass = MenuApi.class)
 @Component
 public class MenuProvider extends BaseProvider implements MenuApi {
+    private final static String TOP_MENU = "0";
     @Autowired
     private MenuService menuService;
 
@@ -81,6 +79,49 @@ public class MenuProvider extends BaseProvider implements MenuApi {
         return success();
     }
 
+    @Override
+    public ResultContext<Void> edit(MenuEditDTO menuEditDTO) {
+        Menu menu = new Menu();
+        BeanUtil.copyProperties(menuEditDTO, menu);
+
+        menuService.edit(menu);
+
+        return success();
+    }
+
+    @Override
+    public ResultContext<MenuVO> getById(String urid) {
+        MenuVO menuVO = new MenuVO();
+        Menu menu = menuService.getById(urid);
+
+        BeanUtil.copyProperties(menu, menuVO);
+        return success(menuVO);
+    }
+
+    @Override
+    public ResultContext<Void> enable(List<MenuEnableDTO> list) {
+        List<Menu> menuList = list.stream().map(x -> {
+            Menu menu = new Menu();
+            BeanUtil.copyProperties(x, menu);
+            return menu;
+        }).collect(Collectors.toList());
+
+        menuService.enable(menuList);
+        return success();
+    }
+
+    @Override
+    public ResultContext<Void> disable(List<MenuDisableDTO> list) {
+        List<Menu> menuList = list.stream().map(x -> {
+            Menu menu = new Menu();
+            BeanUtil.copyProperties(x, menu);
+            return menu;
+        }).collect(Collectors.toList());
+
+        menuService.disable(menuList);
+        return success();
+    }
+
     private List<Menu> deleteConvertToMenu(List<MenuDeleteDTO> list) {
         return list.stream().map(x -> {
             Menu menu = new Menu();
@@ -94,7 +135,7 @@ public class MenuProvider extends BaseProvider implements MenuApi {
         List<MenuVO> menuVOList = menuList.stream().map(x -> {
             MenuVO menuVO = new MenuVO();
             BeanUtils.copyProperties(x, menuVO);
-            if (StrUtil.isNotBlank(x.getParentId())) {
+            if (!TOP_MENU.equals(x.getParentId())) {
                 menuVO.setParentName(menuService.getById(x.getParentId()).getName());
             }
             menuVO.setActiveFlagShow(ENMenuActiveFlag.getLabelByValue(x.getActiveFlag()));

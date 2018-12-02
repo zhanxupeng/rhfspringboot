@@ -1,7 +1,6 @@
 package com.zhan.websys.service.menu.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.StrUtil;
 import com.zhan.websys.bo.base.PageView;
 import com.zhan.websys.bo.treeparser.TreeNodeBO;
 import com.zhan.websys.entity.base.PageQuery;
@@ -29,6 +28,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class MenuServiceImpl implements MenuService {
+    private final static String TOP_MENU = "0";
     @Autowired
     private RoleUserManager roleUserManager;
     @Autowired
@@ -124,8 +124,23 @@ public class MenuServiceImpl implements MenuService {
         menuManager.deletes(list);
     }
 
+    @Override
+    public void edit(Menu menu) {
+        menuManager.update(menu);
+    }
+
+    @Override
+    public void enable(List<Menu> list) {
+        menuManager.enable(list);
+    }
+
+    @Override
+    public void disable(List<Menu> list) {
+        menuManager.disable(list);
+    }
+
     private List<TreeNodeBO> listToTree(List<TreeNodeBO> list) {
-        List<TreeNodeBO> treeNodeBOList = list.stream().filter(x -> StrUtil.isBlank(x.getPid())).collect(Collectors.toList());
+        List<TreeNodeBO> treeNodeBOList = list.stream().filter(x -> TOP_MENU.equals(x.getPid())).collect(Collectors.toList());
 
         if (CollectionUtil.isNotEmpty(treeNodeBOList)) {
             treeNodeBOList.forEach(x -> x.setChildren(getTreeChildren(x, list)));
@@ -182,7 +197,7 @@ public class MenuServiceImpl implements MenuService {
      */
     private List<TreeNodeBO> getMenuTreeNode(List<Menu> menuList) {
         List<TreeNodeBO> treeNodeBOList = menuList.stream()
-                .filter(x -> StrUtil.isBlank(x.getParentId()))
+                .filter(x -> TOP_MENU.equals(x.getParentId()))
                 .map(this::convertToTreeNode).collect(Collectors.toList());
 
         treeNodeBOList.forEach(x -> x.setChildren(getChildren(x, menuList)));
