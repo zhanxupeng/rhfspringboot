@@ -1,7 +1,9 @@
 package com.zhan.websys.service.menuoperation.impl;
 
 import com.zhan.common.loginuser.UserContext;
+import com.zhan.websys.bo.base.PageView;
 import com.zhan.websys.bo.treeparser.TreeNodeBO;
+import com.zhan.websys.entity.base.PageQuery;
 import com.zhan.websys.entity.menuoperation.MenuOperation;
 import com.zhan.websys.manager.menu.MenuManager;
 import com.zhan.websys.manager.menuoperation.MenuOperationManager;
@@ -58,5 +60,24 @@ public class MenuOperationServiceImpl implements MenuOperationService {
     @Override
     public void edit(MenuOperation menuOperation) {
         menuOperationManager.update(menuOperation);
+    }
+
+    @Override
+    public PageView<MenuOperation> query(PageQuery<MenuOperation> pageQuery) {
+        List<MenuOperation> list = menuOperationManager.pageQuery(pageQuery);
+
+        PageView<MenuOperation> pageView = new PageView<>();
+        pageView.setData(list);
+        return pageView;
+    }
+
+    @Override
+    public void deletes(List<MenuOperation> list) {
+        menuOperationManager.deletes(list);
+    }
+
+    @Override
+    public MenuOperation getById(String urid) {
+        return menuOperationManager.getById(urid);
     }
 }

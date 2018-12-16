@@ -1,4 +1,4 @@
-package com.zhan.websys.api.menuoperation.dto;
+package com.zhan.websys.api.menuoperation.vo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,12 +7,22 @@ import java.io.Serializable;
 
 /**
  * @author zhanxp
- * @version 1.0 2018/11/27
+ * @version 1.0  2018/12/16
+ * @Description todo
  */
 @Getter
 @Setter
-public class MenuOperationEditDTO implements Serializable {
+public class MenuOperationVO implements Serializable {
+
     private String urid;
+    private Long version;
+
+
+    /**
+     * 菜单ID
+     * MENU_ID
+     */
+    private String menuId;
 
     /**
      * 菜单操作代码
@@ -37,6 +47,5 @@ public class MenuOperationEditDTO implements Serializable {
      * ACTIVE_FLAG
      */
     private String activeFlag;
-
-    private Integer version;
+    private String activeFlagShow;
 }

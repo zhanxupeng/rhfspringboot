@@ -15,4 +15,5 @@
     <dubbo:reference interface="com.zhan.websys.api.enumpath.EnumPathApi" id="enumPathApi"/>
     <dubbo:reference interface="com.zhan.websys.api.login.UserLoginApi" id="userLoginApi"/>
     <dubbo:reference interface="com.zhan.websys.api.menu.MenuApi" id="menuApi"/>
+    <dubbo:reference interface="com.zhan.websys.api.menuoperation.MenuOperationApi" id="menuOperationApi"/>
 </beans>
